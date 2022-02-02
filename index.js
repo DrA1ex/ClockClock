@@ -1,7 +1,13 @@
 import {digits, symbolEnum, symbols} from "./digits.js";
 
-const ROWS = 6 + digits[0].length;
-const COLS = 4 + (digits[0][0].length + 1) * 4;
+const DIGIT_HEIGHT = digits[0].length
+const DIGIT_WIDTH = digits[0][0].length
+
+const TOP_OFFSET = 1;
+const LEFT_OFFSET = 1;
+
+const ROWS = 2 + DIGIT_HEIGHT;
+const COLS = 4 + DIGIT_WIDTH * 4;
 
 const SIZE = 48;
 const MARGIN = 8;
@@ -37,18 +43,18 @@ for (let i = 0; i < ROWS; i++) {
 }
 
 // colon
-setSymbol(11, 3, symbolEnum.colon);
+setSymbol(LEFT_OFFSET + DIGIT_WIDTH * 2, 1, symbolEnum.colon);
 
 function tick() {
     const now = new Date();
     const minutes = now.getMinutes();
     const hours = now.getHours();
 
-    setDigit(1, 3, Math.floor(hours / 10))
-    setDigit(6, 3, hours % 10)
+    setDigit(LEFT_OFFSET, TOP_OFFSET, Math.floor(hours / 10))
+    setDigit(LEFT_OFFSET + DIGIT_WIDTH, TOP_OFFSET, hours % 10)
 
-    setDigit(14, 3, Math.floor(minutes / 10))
-    setDigit(19, 3, minutes % 10)
+    setDigit(LEFT_OFFSET + 2 + DIGIT_WIDTH * 2, TOP_OFFSET, Math.floor(minutes / 10))
+    setDigit(LEFT_OFFSET + 2 + DIGIT_WIDTH * 3, TOP_OFFSET, minutes % 10)
 
     setTimeout(tick, (60 - new Date().getSeconds()) * 1000);
 }
