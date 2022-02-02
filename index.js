@@ -9,7 +9,7 @@ const LEFT_OFFSET = 1;
 const ROWS = 2 + DIGIT_HEIGHT;
 const COLS = 4 + DIGIT_WIDTH * 4;
 
-const SIZE = 48;
+const SIZE = 36;
 const MARGIN = 8;
 
 const parent = document.getElementById("parent");
