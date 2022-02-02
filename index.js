@@ -41,8 +41,8 @@ setSymbol(11, 3, symbolEnum.colon);
 
 function tick() {
     const now = new Date();
-    const minutes = now.getSeconds();
-    const hours = now.getMinutes();
+    const minutes = now.getMinutes();
+    const hours = now.getHours();
 
     setDigit(1, 3, Math.floor(hours / 10))
     setDigit(6, 3, hours % 10)
@@ -50,7 +50,7 @@ function tick() {
     setDigit(14, 3, Math.floor(minutes / 10))
     setDigit(19, 3, minutes % 10)
 
-    setTimeout(tick, 3000);
+    setTimeout(tick, (60 - new Date().getSeconds()) * 1000);
 }
 
 tick();
