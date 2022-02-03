@@ -81,3 +81,36 @@
     left: calc(50% - 2px);
     border-radius: 2px;
 }
+
+.dark-noir-theme .background {
+    border: 1px solid #cdcdcd;
+    background: rgb(28 28 28);
+    background: linear-gradient(90deg, #181818 0%, #262626 50%, #242424 100%);
+    box-shadow: 0 5px 10px 2px rgba(48, 48, 48, 0.5) inset;
+}
+
+.dark-noir-theme .clock {
+    background: #1f1f1f;
+    background: linear-gradient(90deg, #1c1c1c 0%, #181818 100%);
+    border: 1px solid #000000;
+    box-shadow: -9px -9px 6px -5px rgba(0, 0, 0, 0.3) inset;
+}
+
+.dark-noir-theme .hour, .dark-noir-theme .minute, .dark-noir-theme .dot {
+    background: #232323;
+    background: linear-gradient(45deg, #242424 0%, #383838 100%);
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+}
+
+.dark-noir-theme .hour, .dark-noir-theme .minute, .dark-noir-theme {
+    width: 8px;
+    left: calc(50% - 4px);
+}
+
+.dark-noir-theme .clock .dot {
+    height: 8px;
+    width: 8px;
+    top: calc(50% - 4px);
+    left: calc(50% - 4px);
+    border-radius: 4px;
+}
