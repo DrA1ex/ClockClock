@@ -131,33 +131,18 @@
 }
 
 .oled-theme .background {
-    border: 1px solid #161616;
-    background: #0f0f0f;
-    background: linear-gradient(90deg, #121212 0%, #1a1a1a 50%, #181818 100%);
+    border: none;
+    background: #090909;
     box-shadow: none;
 }
 
 .oled-theme .clock {
-    background: #171717;
+    background: #0f0f0f;
     border: none;
-    box-shadow: -9px -9px 6px -5px rgba(0, 0, 0, 0.4) inset;
+    box-shadow: none;
 }
 
 .oled-theme .hour, .oled-theme .minute, .oled-theme .dot {
-    background: #646464;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
-}
-
-.oled-theme .hour, .oled-theme .minute {
-    width: 8px;
-    left: calc(50% - 4px);
-}
-
-.oled-theme .clock .dot {
-    height: 8px;
-    width: 8px;
-    top: calc(50% - 4px);
-    left: calc(50% - 4px);
-    border-radius: 4px;
+    background: #323232;
     box-shadow: none;
 }
