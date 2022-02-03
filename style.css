@@ -1,4 +1,17 @@
+body {
+    margin: 0;
+}
+
 .container {
+    background: #ececec;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.clock-panel {
     box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.4);
     height: max-content;
     width: max-content;
