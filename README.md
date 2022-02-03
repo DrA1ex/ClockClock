@@ -34,6 +34,11 @@
 
 #### Demo: [link](https://dra1ex.github.io/ClockClock?theme=blue-coated)
 
+### OLED
+![image](https://user-images.githubusercontent.com/1194059/152384377-b6a6fb54-5e8d-4d4c-b88c-198cbf28e7ff.png)
+
+#### Demo: [link](https://dra1ex.github.io/ClockClock?theme=oled)
+
 ## Settings
 - **theme** – theme configuration (one of above)
 - **clock_size** – diameter of a clock circe in px (default: _36_)
