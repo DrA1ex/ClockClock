@@ -36,21 +36,21 @@
     box-shadow: -2px 0 12px 0 rgba(230, 183, 127, 0.35);
 }
 
-.white-gold-theme .background {
+.light-gold-theme .background {
     border: 1px solid #cdcdcd;
     background: rgb(28 28 28);
     background: linear-gradient(90deg, #dbd7d7 0%, #cdcdcd 50%, #eaeaea 100%);
     box-shadow: 0 5px 20px -5px rgba(183, 183, 183, 0.3) inset;
 }
 
-.white-gold-theme .clock {
+.light-gold-theme .clock {
     background: #e4e4e4;
     background: linear-gradient(90deg, #e4e4e4 0%, #c2c2c2 100%);
     border: 1px solid #d3d3d3;
     box-shadow: -10px 0 8px -5px #b7b7b7e0 inset;
 }
 
-.white-gold-theme .hour, .white-gold-theme .minute, .white-gold-theme .dot {
+.light-gold-theme .hour, .light-gold-theme .minute, .light-gold-theme .dot {
     background: #c99e65;
     background: linear-gradient(45deg, #c99e65 0%, #c5995b 100%);
     box-shadow: -2px 0 10px 0 rgba(198, 155, 94, 0.35);
