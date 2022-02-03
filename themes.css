@@ -1,13 +1,13 @@
 .dark-theme .background {
     border: 1px solid #cdcdcd;
     background: rgb(28 28 28);
-    background: linear-gradient(90deg, #181818 0%, #262626 50%, #242424 100%);
-    box-shadow: 0 5px 10px 2px rgba(48, 48, 48, 0.5) inset;
+    background: linear-gradient(90deg, #181818 0%, #262626 50%, #262525 100%);
+    box-shadow: 0 5px 15px 2px rgba(24, 24, 24, 0.6) inset;
 }
 
 .dark-theme .clock {
     background: rgb(34, 34, 34);
-    background: linear-gradient(90deg, #1f1f1f 0%, #232323 100%);
+    background: linear-gradient(90deg, #1f1f1f80 0%, #23232380 100%);
     border: 1px solid #000000;
     box-shadow: -6px -6px 9px -6px rgb(0 0 0) inset;
 }
@@ -36,19 +36,6 @@
     box-shadow: -2px 0 12px 0 rgba(230, 183, 127, 0.35);
 }
 
-.dark-gold-theme .hour, .dark-gold-theme .minute, .dark-gold-theme {
-    width: 4px;
-    left: calc(50% - 2px);
-}
-
-.dark-gold-theme .clock .dot {
-    height: 4px;
-    width: 4px;
-    top: calc(50% - 2px);
-    left: calc(50% - 2px);
-    border-radius: 2px;
-}
-
 .white-gold-theme .background {
     border: 1px solid #cdcdcd;
     background: rgb(28 28 28);
@@ -60,26 +47,13 @@
     background: #e4e4e4;
     background: linear-gradient(90deg, #e4e4e4 0%, #c2c2c2 100%);
     border: 1px solid #d3d3d3;
-    box-shadow: -10px 0 8px -5px #b7b7b7 inset;
+    box-shadow: -10px 0 8px -5px #b7b7b7e0 inset;
 }
 
 .white-gold-theme .hour, .white-gold-theme .minute, .white-gold-theme .dot {
     background: #c99e65;
     background: linear-gradient(45deg, #c99e65 0%, #c5995b 100%);
     box-shadow: -2px 0 10px 0 rgba(198, 155, 94, 0.35);
-}
-
-.white-gold-theme .hour, .white-gold-theme .minute, .white-gold-theme {
-    width: 4px;
-    left: calc(50% - 2px);
-}
-
-.white-gold-theme .clock .dot {
-    height: 4px;
-    width: 4px;
-    top: calc(50% - 2px);
-    left: calc(50% - 2px);
-    border-radius: 2px;
 }
 
 .dark-noir-theme .background {
@@ -113,4 +87,24 @@
     top: calc(50% - 4px);
     left: calc(50% - 4px);
     border-radius: 4px;
+}
+
+.blue-coated-theme .background {
+    border: 1px solid #cdcdcd;
+    background: #1d2737;
+    background: linear-gradient(90deg, #122843 0%, #00132a 50%, #1d2737 100%);
+    box-shadow: 0 5px 15px -5px rgba(2, 10, 34, 0.5) inset;
+}
+
+.blue-coated-theme .clock {
+    background: #1f1f1f;
+    background: linear-gradient(90deg, rgba(31, 46, 71, 0.4) 0%, rgba(28, 45, 72, 0.4) 100%);
+    border: 1px solid rgba(23, 41, 66, 0.6);
+    box-shadow: 15px 5px 15px -6px rgba(2, 14, 28, 0.6) inset;
+}
+
+.blue-coated-theme .hour, .blue-coated-theme .minute, .blue-coated-theme .dot {
+    background: #6e6e6f;
+    background: linear-gradient(45deg, #9c9a97 0%, #6e6e6f 50%, #3a3736 100%);
+    box-shadow: -2px 0 14px 0 rgba(219, 219, 219, 0.4);
 }
