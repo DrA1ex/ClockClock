@@ -25,6 +25,8 @@ proto.getElementsByClassName("minute")[0].style.height = MINUTE_HEIGHT + "px";
 
 parent.style.height = MARGIN + ROWS * (SIZE + MARGIN) + "px";
 parent.style.width = MARGIN + COLS * (SIZE + MARGIN) + "px";
+parent.style.setProperty("--rows", ROWS.toString());
+parent.style.setProperty("--cols", COLS.toString());
 
 const clockElements = new Array(ROWS);
 
@@ -45,6 +47,8 @@ for (let i = 0; i < ROWS; i++) {
 
         elem.style.top = MARGIN + i * (SIZE + MARGIN) + "px";
         elem.style.left = MARGIN + j * (SIZE + MARGIN) + "px";
+        elem.style.setProperty("--x", j.toString());
+        elem.style.setProperty("--y", i.toString());
 
         parent.appendChild(elem);
     }
@@ -66,7 +70,7 @@ if (params.mode === "fullscreen") {
         document.body.clientHeight / parent.clientHeight
     ) * 0.85;
 
-    document.body.style.zoom = zoom;
+    document.body.style.zoom = zoom.toString();
 }
 
 

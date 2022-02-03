@@ -19,6 +19,8 @@ body {
 }
 
 .background {
+    --cols: none;
+    --rows: none;
     position: relative;
     border: 1px solid #f1f1f1;
     background: #e7e7e7;
@@ -26,12 +28,34 @@ body {
     box-shadow: 0 5px 10px 2px rgba(253, 253, 253, 0.2) inset;
 }
 
+.clock-calc {
+    --x: none;
+    --y: none;
+
+    --light_x: calc(var(--cols) / 2);
+    --light_y: -2;
+
+    --tr_height: calc(var(--y) - var(--light_y));
+    --tr_width: calc(var(--light_x) - var(--x));
+}
+
+.clock-calc-hyp {
+    --distance_sqr: calc((var(--tr_width) * var(--tr_width)) + (var(--tr_height) * var(--tr_height)));
+    --sqrt_value: calc(var(--distance_sqr));
+    --tr_hyp: calc(var(--sqrt));
+}
+
 .clock {
+    --mul: 8px;
+    --cos_a: calc(var(--tr_width) / var(--tr_hyp));
+    --sin_a: calc(var(--tr_height) / var(--tr_hyp));
+
+    box-shadow: calc(-1 * var(--mul) * var(--cos_a)) calc(var(--mul) * var(--sin_a)) 10px -5px rgba(163, 163, 163, 0.8) inset;
+
     position: absolute;
     background: #ededed;
     background: linear-gradient(135deg, #ededed80 0%, #efefef80 100%);
     border: 1px solid #e7e7e7;
-    box-shadow: -8px 0 10px -5px rgba(163, 163, 163, 0.5) inset;
     border-radius: 50%;
 }
 
