@@ -1,0 +1,57 @@
+.container {
+    box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.2);
+    height: max-content;
+    width: max-content;
+    margin: 20px;
+}
+
+.background {
+    position: relative;
+    border: 1px solid #cdcdcd;
+    background: #DCDCDC;
+    background: linear-gradient(90deg, rgba(220, 220, 220, 1) 0%, rgba(218, 218, 218, 1) 50%, rgba(213, 213, 213, 1) 100%);
+    box-shadow: 0 5px 10px 2px rgba(253, 253, 253, 0.2) inset;
+}
+
+.clock {
+    position: absolute;
+    background: #DADADA;
+    background: linear-gradient(135deg, rgba(218, 218, 218, 1) 0%, rgba(221, 221, 221, 1) 100%);
+    border: 1px solid #e7e7e7;
+    box-shadow: 5px 5px 8px -5px rgba(253, 253, 253, 0.6) inset;
+    border-radius: 50%;
+}
+
+.clock .hour {
+    position: absolute;
+    height: 16px;
+    width: 2px;
+    top: 50%;
+    left: calc(50% - 1px);
+    background: black;
+    transform-origin: top;
+    transform: rotate(45deg);
+    transition: 3s;
+}
+
+.clock .minute {
+    position: absolute;
+    height: 18px;
+    width: 2px;
+    top: calc(50%);
+    left: calc(50% - 1px);
+    background: black;
+    transform-origin: top;
+    transform: rotate(45deg);
+    transition: 2s;
+}
+
+.clock .dot {
+    position: absolute;
+    height: 2px;
+    width: 2px;
+    top: calc(50% - 1px);
+    left: calc(50% - 1px);
+    background: black;
+    border-radius: 1px;
+}

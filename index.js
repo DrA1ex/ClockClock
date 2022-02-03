@@ -18,6 +18,12 @@ const proto = document.getElementById("proto");
 parent.style.height = MARGIN + ROWS * (SIZE + MARGIN) + "px";
 parent.style.width = MARGIN + COLS * (SIZE + MARGIN) + "px";
 
+const urlSearchParams = new URLSearchParams(window.location.search);
+const params = Object.fromEntries(urlSearchParams.entries());
+if (params.theme) {
+    document.body.setAttribute("class", `${params.theme}-theme`);
+}
+
 const clockElements = new Array(ROWS);
 
 proto.removeAttribute("id");
@@ -46,6 +52,14 @@ for (let i = 0; i < ROWS; i++) {
 setSymbol(LEFT_OFFSET + DIGIT_WIDTH * 2, 1, symbolEnum.colon);
 
 function tick() {
+    drawClock();
+
+    setTimeout(tick, (60 - new Date().getSeconds()) * 1000);
+}
+
+tick();
+
+function drawClock() {
     const now = new Date();
     const minutes = now.getMinutes();
     const hours = now.getHours();
@@ -55,11 +69,7 @@ function tick() {
 
     setDigit(LEFT_OFFSET + 2 + DIGIT_WIDTH * 2, TOP_OFFSET, Math.floor(minutes / 10))
     setDigit(LEFT_OFFSET + 2 + DIGIT_WIDTH * 3, TOP_OFFSET, minutes % 10)
-
-    setTimeout(tick, (60 - new Date().getSeconds()) * 1000);
 }
-
-tick();
 
 function setDigit(x, y, d) {
     const angles = convertGlyphToAngles(digits[d]);

@@ -1,0 +1,83 @@
+.dark-theme .background {
+    border: 1px solid #cdcdcd;
+    background: rgb(28 28 28);
+    background: linear-gradient(90deg, #181818 0%, #262626 50%, #242424 100%);
+    box-shadow: 0 5px 10px 2px rgba(48, 48, 48, 0.5) inset;
+}
+
+.dark-theme .clock {
+    background: rgb(34, 34, 34);
+    background: linear-gradient(90deg, #1f1f1f 0%, #232323 100%);
+    border: 1px solid #000000;
+    box-shadow: -6px -6px 9px -6px rgb(0 0 0) inset;
+}
+
+.dark-theme .hour, .dark-theme .minute, .dark-theme .dot {
+    background: white;
+}
+
+.dark-gold-theme .background {
+    border: 1px solid #cdcdcd;
+    background: rgb(28 28 28);
+    background: linear-gradient(90deg, #181818 0%, #262626 50%, #242424 100%);
+    box-shadow: 0 5px 10px 2px rgba(48, 48, 48, 0.5) inset;
+}
+
+.dark-gold-theme .clock {
+    background: #1f1f1f;
+    background: linear-gradient(90deg, #1f1f1f 0%, #232323 100%);
+    border: 1px solid #000000;
+    box-shadow: -6px -6px 9px -6px rgb(0 0 0) inset;
+}
+
+.dark-gold-theme .hour, .dark-gold-theme .minute, .dark-gold-theme .dot {
+    background: #e8b882;
+    background: linear-gradient(45deg, #e6b77f 0%, #f1cd9f 100%);
+    box-shadow: -2px 0 12px 0 rgba(230, 183, 127, 0.35);
+}
+
+.dark-gold-theme .hour, .dark-gold-theme .minute, .dark-gold-theme {
+    width: 4px;
+    left: calc(50% - 2px);
+}
+
+.dark-gold-theme .clock .dot {
+    height: 4px;
+    width: 4px;
+    top: calc(50% - 2px);
+    left: calc(50% - 2px);
+    border-radius: 2px;
+}
+
+.white-gold-theme .background {
+    border: 1px solid #cdcdcd;
+    background: rgb(28 28 28);
+    background: linear-gradient(90deg, #dbd7d7 0%, #cdcdcd 50%, #eaeaea 100%);
+    box-shadow: 0 5px 20px -5px rgba(183, 183, 183, 0.3) inset;
+}
+
+.white-gold-theme .clock {
+    background: #e4e4e4;
+    background: linear-gradient(90deg, #e4e4e4 0%, #c2c2c2 100%);
+    border: 1px solid #d3d3d3;
+    box-shadow: -10px 0 8px -5px #b7b7b7 inset;
+}
+
+.white-gold-theme .hour, .white-gold-theme .minute, .white-gold-theme .dot {
+    background: #c99e65;
+    background: linear-gradient(45deg, #c99e65 0%, #c5995b 100%);
+    box-shadow: -2px 0 10px 0 rgba(198, 155, 94, 0.35);
+}
+
+.white-gold-theme .hour, .white-gold-theme .minute, .white-gold-theme {
+    width: 4px;
+    left: calc(50% - 2px);
+}
+
+.white-gold-theme .clock .dot {
+    height: 4px;
+    width: 4px;
+    top: calc(50% - 2px);
+    left: calc(50% - 2px);
+    border-radius: 2px;
+}
