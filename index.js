@@ -76,7 +76,7 @@ function tick() {
     setTimeout(tick, (60 - new Date().getSeconds()) * 1000);
 }
 
-setTimeout(tick, 300);
+setTimeout(tick, 100);
 
 function drawClock() {
     const now = new Date();
