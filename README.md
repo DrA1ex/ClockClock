@@ -33,3 +33,14 @@
 ![image](https://user-images.githubusercontent.com/1194059/152360609-be66ce26-5ae7-4059-9570-0f92969dde2b.png)
 
 #### Demo: [link](https://dra1ex.github.io/ClockClock?theme=blue-coated)
+
+## Settings
+- **theme** – theme configuration (one of above)
+- **clock_size** – diameter of a clock circe in px (default: _36_)
+- **clock_margin** – margin beetween each clock in px (default: _8_)
+- **clock_hour** – height of a hour arrow in px (default: <_clock_size_ - 2>)
+- **clock_minute** – height of a minute arrow in px (default: <_clock_size_>)
+- **bg** – special backgroud mode. Supported values: oled (default: _none_)
+- **mode** – special display mode. Supported values: fullscreen (default: _none_)
+
+**Example**: [link](https://dra1ex.github.io/ClockClock?theme=dark-gold&clock_size=64&clock_margin=24&clock_hour=24&clock_minute=48&bg=oled&mode=fullscreen)
