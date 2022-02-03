@@ -37,7 +37,6 @@ body {
 
 .clock .hour {
     position: absolute;
-    height: 16px;
     width: 4px;
     top: 50%;
     left: calc(50% - 2px);
@@ -49,7 +48,6 @@ body {
 
 .clock .minute {
     position: absolute;
-    height: 18px;
     width: 4px;
     top: calc(50%);
     left: calc(50% - 2px);
@@ -67,4 +65,16 @@ body {
     left: calc(50% - 2px);
     background: black;
     border-radius: 2px;
+}
+
+.oled-bg .container {
+    background: #000 !important;
+}
+
+.oled-bg .clock-panel {
+    box-shadow: none !important;
+}
+
+.oled-bg .background {
+    border: none !important;
 }

@@ -1,5 +1,8 @@
 import {digits, symbolEnum, symbols} from "./digits.js";
 
+const urlSearchParams = new URLSearchParams(window.location.search);
+const params = Object.fromEntries(urlSearchParams.entries());
+
 const DIGIT_HEIGHT = digits[0].length
 const DIGIT_WIDTH = digits[0][0].length
 
@@ -9,20 +12,19 @@ const LEFT_OFFSET = 1;
 const ROWS = 2 + DIGIT_HEIGHT;
 const COLS = 4 + DIGIT_WIDTH * 4;
 
-const SIZE = 36;
-const MARGIN = 8;
+const SIZE = ~~params.clock_size || 36;
+const MARGIN = ~~params.clock_margin || 8;
+const HOUR_HEIGHT = ~~params.clock_hour || (SIZE / 2 - 2);
+const MINUTE_HEIGHT = ~~params.clock_minute || (SIZE / 2);
 
 const parent = document.getElementById("parent");
 const proto = document.getElementById("proto");
 
+proto.getElementsByClassName("hour")[0].style.height = HOUR_HEIGHT + "px";
+proto.getElementsByClassName("minute")[0].style.height = MINUTE_HEIGHT + "px";
+
 parent.style.height = MARGIN + ROWS * (SIZE + MARGIN) + "px";
 parent.style.width = MARGIN + COLS * (SIZE + MARGIN) + "px";
-
-const urlSearchParams = new URLSearchParams(window.location.search);
-const params = Object.fromEntries(urlSearchParams.entries());
-if (params.theme) {
-    document.body.setAttribute("class", `${params.theme}-theme`);
-}
 
 const clockElements = new Array(ROWS);
 
@@ -47,6 +49,26 @@ for (let i = 0; i < ROWS; i++) {
         parent.appendChild(elem);
     }
 }
+
+if (params.theme) {
+    addClass(document.body, `${params.theme}-theme`);
+}
+
+if (params.bg === "oled") {
+    addClass(document.body, "oled-bg");
+}
+
+if (params.mode === "fullscreen") {
+    addClass(document.body, "fullscreen-mode");
+
+    const zoom = Math.min(
+        document.body.clientWidth / parent.clientWidth,
+        document.body.clientHeight / parent.clientHeight
+    ) * 0.85;
+
+    document.body.style.zoom = zoom;
+}
+
 
 function tick() {
     drawClock();
@@ -139,4 +161,9 @@ function setAngle(clock, angle) {
         hour.style.transform = `rotate(${angle[1]}deg)`;
         clock.angle = angle.concat([]);
     }
+}
+
+function addClass(element, name) {
+    const oldValue = document.body.getAttribute("class");
+    document.body.setAttribute("class", oldValue ? [name, oldValue].join(" ") : name);
 }
