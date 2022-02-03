@@ -48,9 +48,6 @@ for (let i = 0; i < ROWS; i++) {
     }
 }
 
-// colon
-setSymbol(LEFT_OFFSET + DIGIT_WIDTH * 2, 1, symbolEnum.colon);
-
 function tick() {
     drawClock();
 
@@ -64,11 +61,14 @@ function drawClock() {
     const minutes = now.getMinutes();
     const hours = now.getHours();
 
-    setDigit(LEFT_OFFSET, TOP_OFFSET, Math.floor(hours / 10))
-    setDigit(LEFT_OFFSET + DIGIT_WIDTH, TOP_OFFSET, hours % 10)
+    setDigit(LEFT_OFFSET, TOP_OFFSET, Math.floor(hours / 10));
+    setDigit(LEFT_OFFSET + DIGIT_WIDTH, TOP_OFFSET, hours % 10);
 
-    setDigit(LEFT_OFFSET + 2 + DIGIT_WIDTH * 2, TOP_OFFSET, Math.floor(minutes / 10))
-    setDigit(LEFT_OFFSET + 2 + DIGIT_WIDTH * 3, TOP_OFFSET, minutes % 10)
+    setDigit(LEFT_OFFSET + 2 + DIGIT_WIDTH * 2, TOP_OFFSET, Math.floor(minutes / 10));
+    setDigit(LEFT_OFFSET + 2 + DIGIT_WIDTH * 3, TOP_OFFSET, minutes % 10);
+
+    // colon
+    setSymbol(LEFT_OFFSET + DIGIT_WIDTH * 2, 1, symbolEnum.colon);
 }
 
 function setDigit(x, y, d) {
