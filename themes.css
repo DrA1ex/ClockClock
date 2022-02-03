@@ -13,7 +13,7 @@
     background: rgb(34, 34, 34);
     background: linear-gradient(90deg, #1f1f1f80 0%, #23232380 100%);
     border: 1px solid #000000;
-    box-shadow: -6px -6px 9px -6px rgb(0 0 0) inset;
+    --clock-box-shadow-color: rgb(0, 0, 0);
 }
 
 .dark-theme .hour, .dark-theme .minute, .dark-theme .dot {
@@ -35,7 +35,7 @@
     background: #1f1f1f;
     background: linear-gradient(90deg, #1f1f1f 0%, #232323 100%);
     border: 1px solid #000000;
-    box-shadow: -6px -6px 9px -6px rgb(0 0 0) inset;
+    --clock-box-shadow-color: rgb(0, 0, 0);
 }
 
 .dark-gold-theme .hour, .dark-gold-theme .minute, .dark-gold-theme .dot {
@@ -55,7 +55,7 @@
     background: #e4e4e4;
     background: linear-gradient(90deg, #e4e4e4 0%, #c2c2c2 100%);
     border: 1px solid #d3d3d3;
-    box-shadow: -10px 0 8px -5px #b7b7b7e0 inset;
+    --clock-box-shadow-color: #b7b7b7e0;
 }
 
 .light-gold-theme .hour, .light-gold-theme .minute, .light-gold-theme .dot {
@@ -79,7 +79,7 @@
     background: #1f1f1f;
     background: linear-gradient(90deg, #1c1c1c 0%, #181818 100%);
     border: 1px solid #000000;
-    box-shadow: -9px -9px 6px -5px rgba(0, 0, 0, 0.3) inset;
+    --clock-box-shadow-color: rgba(0, 0, 0, 0.6);
 }
 
 .dark-noir-theme .hour, .dark-noir-theme .minute, .dark-noir-theme .dot {
@@ -108,7 +108,7 @@
 .blue-coated-theme .background {
     border: 1px solid #00132a;
     background: #1d2737;
-    background: linear-gradient(90deg, #212d45 0%, #001125 50%, #212737 100%);
+    background: linear-gradient(90deg, #001125 0%, #1c273d 50%, #191e2b 100%);
     box-shadow: 10px 10px 20px 0 rgba(2, 10, 34, 0.5) inset;
 }
 
@@ -116,7 +116,7 @@
     background: #1f1f1f;
     background: linear-gradient(90deg, rgba(31, 46, 71, 0.4) 0%, rgba(28, 45, 72, 0.4) 100%);
     border: 1px solid rgba(23, 41, 66, 0.6);
-    box-shadow: 15px 5px 15px -6px rgba(2, 14, 28, 0.6) inset;
+    --clock-box-shadow-color: rgba(2, 14, 28, 0.6);
 }
 
 .blue-coated-theme .hour, .blue-coated-theme .minute, .blue-coated-theme .dot {

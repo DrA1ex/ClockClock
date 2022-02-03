@@ -50,7 +50,8 @@ body {
     --cos_a: calc(var(--tr_width) / var(--tr_hyp));
     --sin_a: calc(var(--tr_height) / var(--tr_hyp));
 
-    box-shadow: calc(-1 * var(--mul) * var(--cos_a)) calc(var(--mul) * var(--sin_a)) 10px -5px rgba(163, 163, 163, 0.8) inset;
+    --clock-box-shadow-color: rgba(163, 163, 163, 0.8);
+    box-shadow: calc(-1 * var(--mul) * var(--cos_a)) calc(var(--mul) * var(--sin_a)) 10px -5px var(--clock-box-shadow-color) inset;
 
     position: absolute;
     background: #ededed;
