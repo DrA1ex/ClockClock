@@ -2,6 +2,11 @@ body {
     margin: 0;
 }
 
+#canvas {
+    z-index: 100;
+    position: absolute;
+}
+
 .container {
     background: #ececec;
     display: flex;
@@ -44,42 +49,12 @@ body {
 .clock {
     --clock-box-shadow-color: rgba(163, 163, 163, 0.8);
     box-shadow: calc(-1 * var(--mul) * var(--cos_a)) calc(var(--mul) * var(--sin_a)) 10px -5px var(--clock-box-shadow-color) inset;
-
     --clock-arrow-color: black;
-
     position: absolute;
     background: #ededed;
     background: linear-gradient(135deg, #ededed80 0%, #efefef80 100%);
     border: 1px solid #e7e7e7;
     border-radius: 50%;
-}
-
-.clock .hour {
-    position: absolute;
-    width: 4px;
-    top: 50%;
-    left: calc(50% - 2px);
-    background: var(--clock-arrow-color);
-    transform-origin: top;
-}
-
-.clock .minute {
-    position: absolute;
-    width: 4px;
-    top: calc(50%);
-    left: calc(50% - 2px);
-    background: var(--clock-arrow-color);
-    transform-origin: top;
-}
-
-.clock .dot {
-    position: absolute;
-    height: 4px;
-    width: 4px;
-    top: calc(50% - 2px);
-    left: calc(50% - 2px);
-    background: var(--clock-arrow-color);
-    border-radius: 2px;
 }
 
 .oled-bg .container {

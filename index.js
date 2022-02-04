@@ -4,9 +4,10 @@ import {ClockDrawer} from "./scripts/clock.js";
 
 const parent = document.getElementById("parent");
 const proto = document.getElementById("proto");
+const canvas = document.getElementById("canvas");
 
 const settings = new Settings();
-const clockDrawer = new ClockDrawer(parent, proto, settings);
+const clockDrawer = new ClockDrawer(parent, proto, canvas, settings);
 
 if (settings.THEME.key) {
     settings.addClass(document.body, `${settings.THEME.key}-theme`);

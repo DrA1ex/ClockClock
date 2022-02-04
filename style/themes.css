@@ -1,10 +1,11 @@
+/* Dark Theme */
+
 .dark-theme .container {
     background: #505050;
 }
 
 .dark-theme .background {
     border: 1px solid #161616;
-    background: rgb(28 28 28);
     background: linear-gradient(90deg, #181818 0%, #262626 50%, #262525 100%);
     box-shadow: 0 5px 15px 2px rgba(24, 24, 24, 0.6) inset;
 }
@@ -12,10 +13,12 @@
 .dark-theme .clock {
     background: rgb(34, 34, 34);
     background: linear-gradient(90deg, #1f1f1f80 0%, #23232380 100%);
-    border: 1px solid #000000;
+    border: 1px solid #1a1a1a;
     --clock-box-shadow-color: rgb(0, 0, 0);
     --clock-arrow-color: white;
 }
+
+/* Dark Gold Theme */
 
 .dark-gold-theme .container {
     background: #505050;
@@ -23,41 +26,33 @@
 
 .dark-gold-theme .background {
     border: 1px solid #161616;
-    background: rgb(28 28 28);
     background: linear-gradient(90deg, #181818 0%, #262626 50%, #242424 100%);
     box-shadow: 0 5px 10px 2px rgba(48, 48, 48, 0.5) inset;
 }
 
 .dark-gold-theme .clock {
-    background: #1f1f1f;
     background: linear-gradient(90deg, #1f1f1f 0%, #232323 100%);
-    border: 1px solid #000000;
+    border: 1px solid #1a1a1a;
     --clock-box-shadow-color: rgb(0, 0, 0);
     --clock-arrow-color: linear-gradient(45deg, #e6b77f 0%, #f1cd9f 100%);
 }
 
-.dark-gold-theme .hour, .dark-gold-theme .minute, .dark-gold-theme .dot {
-    box-shadow: -2px 0 12px 0 rgba(230, 183, 127, 0.35);
-}
+/* Light Gold Theme */
 
 .light-gold-theme .background {
     border: 1px solid #cdcdcd;
-    background: rgb(28 28 28);
     background: linear-gradient(90deg, #e5e5e5 0%, #cbcbcb 50%, #e3e3e3 100%);
     box-shadow: 0 5px 20px -5px rgba(183, 183, 183, 0.3) inset;
 }
 
 .light-gold-theme .clock {
-    background: #e4e4e4;
     background: linear-gradient(90deg, #e4e4e4 0%, #c2c2c2 100%);
     border: 1px solid #d3d3d3;
     --clock-box-shadow-color: rgba(144, 144, 144, 0.5);
     --clock-arrow-color: linear-gradient(45deg, #c99e65 0%, #c5995b 100%);
 }
 
-.light-gold-theme .hour, .light-gold-theme .minute, .light-gold-theme .dot {
-    box-shadow: -2px 0 10px 0 rgba(198, 155, 94, 0.35);
-}
+/* Dark Noir Theme */
 
 .dark-noir-theme .container {
     background: #262626;
@@ -65,26 +60,15 @@
 
 .dark-noir-theme .background {
     border: 1px solid #161616;
-    background: rgb(28 28 28);
     background: linear-gradient(90deg, #181818 0%, #262626 50%, #242424 100%);
     box-shadow: 0 5px 10px 2px rgba(48, 48, 48, 0.5) inset;
 }
 
 .dark-noir-theme .clock {
-    background: #1f1f1f;
     background: linear-gradient(90deg, #1c1c1c 0%, #181818 100%);
-    border: 1px solid #000000;
+    border: 1px solid #1c1c1c;
     --clock-box-shadow-color: rgba(0, 0, 0, 0.6);
     --clock-arrow-color: linear-gradient(45deg, #242424 0%, #383838 100%);
-}
-
-.dark-noir-theme .hour, .dark-noir-theme .minute, .dark-noir-theme .dot {
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
-}
-
-.dark-noir-theme .hour, .dark-noir-theme .minute {
-    width: 8px;
-    left: calc(50% - 4px);
 }
 
 .dark-noir-theme .clock .dot {
@@ -95,28 +79,26 @@
     border-radius: 4px;
 }
 
+/* Blue Coated Theme */
+
 .blue-coated-theme .container {
     background: #4a5b6e;
 }
 
 .blue-coated-theme .background {
     border: 1px solid #00132a;
-    background: #1d2737;
     background: linear-gradient(90deg, #001125 0%, #1c273d 50%, #191e2b 100%);
     box-shadow: 10px 10px 20px 0 rgba(2, 10, 34, 0.5) inset;
 }
 
 .blue-coated-theme .clock {
-    background: #1f1f1f;
     background: linear-gradient(90deg, rgba(31, 46, 71, 0.4) 0%, rgba(28, 45, 72, 0.4) 100%);
     border: 1px solid rgba(23, 41, 66, 0.6);
     --clock-box-shadow-color: rgba(2, 14, 28, 0.6);
     --clock-arrow-color: linear-gradient(45deg, #b3b6bc 0%, #8a8b8c 50%, #cacacb 100%);
 }
 
-.blue-coated-theme .hour, .blue-coated-theme .minute, .blue-coated-theme .dot {
-    box-shadow: -2px 0 10px 0 #869db94d;
-}
+/* OLED Theme */
 
 .oled-theme .container {
     background: #000;

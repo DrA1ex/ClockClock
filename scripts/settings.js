@@ -17,7 +17,19 @@ export class Themes {
         return {
             lightY: -6,
             lightX: this.settings.COLS / 2,
-            intensity: 1
+            intensity: 1,
+            color: "black",
+            width: 4
+        };
+    }
+
+    get dark() {
+        return {
+            lightY: -6,
+            lightX: this.settings.COLS / 2,
+            intensity: 1,
+            color: "white",
+            width: 4
         };
     }
 
@@ -25,7 +37,9 @@ export class Themes {
         return {
             lightY: this.settings.ROWS + 6,
             lightX: this.settings.COLS / 2,
-            intensity: 1
+            intensity: 1,
+            color: "#e6b77f",
+            width: 4
         };
     }
 
@@ -33,8 +47,40 @@ export class Themes {
         return {
             lightY: this.settings.ROWS / 2,
             lightX: this.settings.COLS,
-            intensity: 2
+            intensity: 2,
+            color: "#c99e65",
+            width: 4
         };
+    }
+
+    get ["dark-noir"]() {
+        return {
+            lightY: -6,
+            lightX: this.settings.COLS / 2,
+            intensity: 1,
+            color: "#383838",
+            width: 8
+        };
+    }
+
+    get ["blue-coated"]() {
+        return {
+            lightY: -6,
+            lightX: this.settings.COLS / 2,
+            intensity: 1,
+            color: "#242424",
+            width: 4
+        };
+    }
+
+    get oled() {
+        return {
+            lightY: -6,
+            lightX: this.settings.COLS / 2,
+            intensity: 1,
+            color: "#323232",
+            width: 4
+        }
     }
 }
 
