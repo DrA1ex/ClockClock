@@ -1,4 +1,4 @@
-# The Clock Clock Expirience
+# The Clock Clock Experience
 
 ![clock_clock](https://user-images.githubusercontent.com/1194059/152324919-765dd671-aa98-4011-9d2a-2d5697b66ba9.gif)
 
