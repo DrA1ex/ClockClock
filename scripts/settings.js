@@ -30,28 +30,9 @@ export class Settings {
 
         this.HOUR_HEIGHT = ~~this.params["clock_hour"] || (this.SIZE / 2 - 2);
         this.MINUTE_HEIGHT = ~~this.params["clock_minute"] || (this.SIZE / 2);
-
-        if (this.params["theme"]) {
-            this._addClass(document.body, `${this.params["theme"]}-theme`);
-        }
-
-        if (this.params["bg"] === "oled") {
-            this._addClass(document.body, "oled-bg");
-        }
-
-        if (this.params["mode"] === "fullscreen") {
-            this._addClass(document.body, "fullscreen-mode");
-
-            const zoom = Math.min(
-                document.body.clientWidth / parent.clientWidth,
-                document.body.clientHeight / parent.clientHeight
-            ) * 0.85;
-
-            document.body.style.zoom = zoom.toString();
-        }
     }
 
-    _addClass(element, name) {
+    addClass(element, name) {
         const oldValue = document.body.getAttribute("class");
         document.body.setAttribute("class", oldValue ? [name, oldValue].join(" ") : name);
     }

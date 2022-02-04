@@ -1,12 +1,31 @@
 import {Settings} from "./scripts/settings.js";
 import {ClockDrawer} from "./scripts/clock.js";
 
-const settings = new Settings();
 
 const parent = document.getElementById("parent");
 const proto = document.getElementById("proto");
 
+const settings = new Settings();
 const clockDrawer = new ClockDrawer(parent, proto, settings);
+
+if (settings.params["theme"]) {
+    settings.addClass(document.body, `${settings.params["theme"]}-theme`);
+}
+
+if (settings.params["bg"] === "oled") {
+    settings.addClass(document.body, "oled-bg");
+}
+
+if (settings.params["mode"] === "fullscreen") {
+    settings.addClass(document.body, "fullscreen-mode");
+
+    const zoom = Math.min(
+        document.body.clientWidth / parent.clientWidth,
+        document.body.clientHeight / parent.clientHeight
+    ) * 0.85;
+
+    document.body.style.zoom = zoom.toString();
+}
 
 setTimeout(tick, 100);
 
