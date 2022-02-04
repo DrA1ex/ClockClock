@@ -29,27 +29,19 @@ body {
 }
 
 .clock-calc {
+    --mul_base: 16px;
+
     --x: none;
     --y: none;
 
-    --light_x: calc(var(--cols) / 2);
-    --light_y: -2;
+    --cos_a: none;
+    --sin_a: none;
+    --intensity: none;
 
-    --tr_height: calc(var(--y) - var(--light_y));
-    --tr_width: calc(var(--light_x) - var(--x));
-}
-
-.clock-calc-hyp {
-    --distance_sqr: calc((var(--tr_width) * var(--tr_width)) + (var(--tr_height) * var(--tr_height)));
-    --sqrt_value: calc(var(--distance_sqr));
-    --tr_hyp: calc(var(--sqrt));
+    --mul: calc(var(--mul_base) * var(--intensity));
 }
 
 .clock {
-    --mul: 8px;
-    --cos_a: calc(var(--tr_width) / var(--tr_hyp));
-    --sin_a: calc(var(--tr_height) / var(--tr_hyp));
-
     --clock-box-shadow-color: rgba(163, 163, 163, 0.8);
     box-shadow: calc(-1 * var(--mul) * var(--cos_a)) calc(var(--mul) * var(--sin_a)) 10px -5px var(--clock-box-shadow-color) inset;
 

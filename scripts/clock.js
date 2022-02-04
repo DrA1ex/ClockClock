@@ -26,6 +26,25 @@ export class ClockDrawer {
         this._setSymbol(LEFT_OFFSET + DIGIT_WIDTH * 2, 1, Glyphs.SymbolsEnum.colon);
     }
 
+    updateLighting() {
+        const {lightX, lightY, intensity} = this.settings.THEME.theme();
+
+        for (let i = 0; i < this.settings.ROWS; i++) {
+            for (let j = 0; j < this.settings.COLS; j++) {
+                const {elem} = this.clockElements[i][j];
+
+                const trWidth = j - lightX;
+                const trHeight = i - lightY;
+                const distance = Math.sqrt(trWidth * trWidth + trHeight * trHeight);
+                const intense = distance / this.settings.COLS / intensity;
+
+                elem.style.setProperty("--cos_a", (-trWidth / distance).toString());
+                elem.style.setProperty("--sin_a", (trHeight / distance).toString());
+                elem.style.setProperty("--intensity", (intense).toString());
+            }
+        }
+    }
+
     _init() {
         const {MARGIN, SIZE, ROWS, COLS, HOUR_HEIGHT, MINUTE_HEIGHT} = this.settings;
 
@@ -63,6 +82,8 @@ export class ClockDrawer {
                 this.parent.appendChild(elem);
             }
         }
+
+        this.updateLighting();
     }
 
     _setDigit(x, y, d) {

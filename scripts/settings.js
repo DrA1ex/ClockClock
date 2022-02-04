@@ -1,5 +1,43 @@
 import {Glyphs} from "./digits.js";
 
+export class Themes {
+    constructor(settings) {
+        this.settings = settings;
+    }
+
+    get key() {
+        return this.settings.params["theme"];
+    }
+
+    theme() {
+        return this[this.key] || this.light;
+    }
+
+    get light() {
+        return {
+            lightY: -6,
+            lightX: this.settings.COLS / 2,
+            intensity: 1
+        };
+    }
+
+    get ["dark-gold"]() {
+        return {
+            lightY: this.settings.ROWS + 6,
+            lightX: this.settings.COLS / 2,
+            intensity: 1
+        };
+    }
+
+    get ["light-gold"]() {
+        return {
+            lightY: this.settings.ROWS / 2,
+            lightX: this.settings.COLS,
+            intensity: 2
+        };
+    }
+}
+
 export class Settings {
     DIGIT_HEIGHT;
     DIGIT_WIDTH;
@@ -11,6 +49,7 @@ export class Settings {
     MARGIN;
     HOUR_HEIGHT;
     MINUTE_HEIGHT;
+    THEME;
 
     constructor() {
         const urlSearchParams = new URLSearchParams(window.location.search);
@@ -30,7 +69,10 @@ export class Settings {
 
         this.HOUR_HEIGHT = ~~this.params["clock_hour"] || (this.SIZE / 2 - 2);
         this.MINUTE_HEIGHT = ~~this.params["clock_minute"] || (this.SIZE / 2);
+
+        this.THEME = new Themes(this);
     }
+
 
     addClass(element, name) {
         const oldValue = document.body.getAttribute("class");

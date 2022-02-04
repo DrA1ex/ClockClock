@@ -8,8 +8,8 @@ const proto = document.getElementById("proto");
 const settings = new Settings();
 const clockDrawer = new ClockDrawer(parent, proto, settings);
 
-if (settings.params["theme"]) {
-    settings.addClass(document.body, `${settings.params["theme"]}-theme`);
+if (settings.THEME.key) {
+    settings.addClass(document.body, `${settings.THEME.key}-theme`);
 }
 
 if (settings.params["bg"] === "oled") {

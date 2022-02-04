@@ -17,11 +17,6 @@
     --clock-arrow-color: white;
 }
 
-.dark-gold-theme .clock-calc {
-    --light_x: calc(var(--cols) / 2);
-    --light_y: calc(var(--rows) + 2);
-}
-
 .dark-gold-theme .container {
     background: #505050;
 }
@@ -45,15 +40,10 @@
     box-shadow: -2px 0 12px 0 rgba(230, 183, 127, 0.35);
 }
 
-.light-gold-theme .clock-calc {
-    --light_x: calc(var(--cols) + 2);
-    --light_y: 5;
-}
-
 .light-gold-theme .background {
     border: 1px solid #cdcdcd;
     background: rgb(28 28 28);
-    background: linear-gradient(90deg, #e7e5e4 0%, #cdcdcd 50%, #e3dfde 100%);
+    background: linear-gradient(90deg, #e5e5e5 0%, #cbcbcb 50%, #e3e3e3 100%);
     box-shadow: 0 5px 20px -5px rgba(183, 183, 183, 0.3) inset;
 }
 
