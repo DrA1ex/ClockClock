@@ -14,10 +14,12 @@
     background: linear-gradient(90deg, #1f1f1f80 0%, #23232380 100%);
     border: 1px solid #000000;
     --clock-box-shadow-color: rgb(0, 0, 0);
+    --clock-arrow-color: white;
 }
 
-.dark-theme .hour, .dark-theme .minute, .dark-theme .dot {
-    background: white;
+.dark-gold-theme .clock-calc {
+    --light_x: calc(var(--cols) / 2);
+    --light_y: calc(var(--rows) + 2);
 }
 
 .dark-gold-theme .container {
@@ -36,18 +38,22 @@
     background: linear-gradient(90deg, #1f1f1f 0%, #232323 100%);
     border: 1px solid #000000;
     --clock-box-shadow-color: rgb(0, 0, 0);
+    --clock-arrow-color: linear-gradient(45deg, #e6b77f 0%, #f1cd9f 100%);
 }
 
 .dark-gold-theme .hour, .dark-gold-theme .minute, .dark-gold-theme .dot {
-    background: #e8b882;
-    background: linear-gradient(45deg, #e6b77f 0%, #f1cd9f 100%);
     box-shadow: -2px 0 12px 0 rgba(230, 183, 127, 0.35);
+}
+
+.light-gold-theme .clock-calc {
+    --light_x: calc(var(--cols) + 2);
+    --light_y: 5;
 }
 
 .light-gold-theme .background {
     border: 1px solid #cdcdcd;
     background: rgb(28 28 28);
-    background: linear-gradient(90deg, #dbd7d7 0%, #cdcdcd 50%, #eaeaea 100%);
+    background: linear-gradient(90deg, #e7e5e4 0%, #cdcdcd 50%, #e3dfde 100%);
     box-shadow: 0 5px 20px -5px rgba(183, 183, 183, 0.3) inset;
 }
 
@@ -55,12 +61,11 @@
     background: #e4e4e4;
     background: linear-gradient(90deg, #e4e4e4 0%, #c2c2c2 100%);
     border: 1px solid #d3d3d3;
-    --clock-box-shadow-color: #b7b7b7e0;
+    --clock-box-shadow-color: rgba(144, 144, 144, 0.5);
+    --clock-arrow-color: linear-gradient(45deg, #c99e65 0%, #c5995b 100%);
 }
 
 .light-gold-theme .hour, .light-gold-theme .minute, .light-gold-theme .dot {
-    background: #c99e65;
-    background: linear-gradient(45deg, #c99e65 0%, #c5995b 100%);
     box-shadow: -2px 0 10px 0 rgba(198, 155, 94, 0.35);
 }
 
@@ -80,11 +85,10 @@
     background: linear-gradient(90deg, #1c1c1c 0%, #181818 100%);
     border: 1px solid #000000;
     --clock-box-shadow-color: rgba(0, 0, 0, 0.6);
+    --clock-arrow-color: linear-gradient(45deg, #242424 0%, #383838 100%);
 }
 
 .dark-noir-theme .hour, .dark-noir-theme .minute, .dark-noir-theme .dot {
-    background: #232323;
-    background: linear-gradient(45deg, #242424 0%, #383838 100%);
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
 }
 
@@ -117,11 +121,10 @@
     background: linear-gradient(90deg, rgba(31, 46, 71, 0.4) 0%, rgba(28, 45, 72, 0.4) 100%);
     border: 1px solid rgba(23, 41, 66, 0.6);
     --clock-box-shadow-color: rgba(2, 14, 28, 0.6);
+    --clock-arrow-color: linear-gradient(45deg, #b3b6bc 0%, #8a8b8c 50%, #cacacb 100%);
 }
 
 .blue-coated-theme .hour, .blue-coated-theme .minute, .blue-coated-theme .dot {
-    background: #6e6e6f;
-    background: linear-gradient(45deg, #b3b6bc 0%, #8a8b8c 50%, #cacacb 100%);
     box-shadow: -2px 0 10px 0 #869db94d;
 }
 
@@ -140,9 +143,5 @@
     background: #0f0f0f;
     border: none;
     box-shadow: none;
-}
-
-.oled-theme .hour, .oled-theme .minute, .oled-theme .dot {
-    background: #323232;
-    box-shadow: none;
+    --clock-arrow-color: #323232;
 }
