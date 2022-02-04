@@ -61,8 +61,6 @@ body {
     left: calc(50% - 2px);
     background: var(--clock-arrow-color);
     transform-origin: top;
-    transform: rotate(45deg);
-    transition: 3s;
 }
 
 .clock .minute {
@@ -72,8 +70,6 @@ body {
     left: calc(50% - 2px);
     background: var(--clock-arrow-color);
     transform-origin: top;
-    transform: rotate(45deg);
-    transition: 2s;
 }
 
 .clock .dot {

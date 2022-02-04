@@ -1,5 +1,15 @@
 import {Glyphs} from "./digits.js";
 
+function range(from, to) {
+    function* _range(from, to) {
+        for (let i = from; i < to; ++i) {
+            yield i;
+        }
+    }
+
+    return Array.from(_range(from, to));
+}
+
 export class ClockDrawer {
     constructor(parent, clockProto, settings) {
         this.settings = settings;
@@ -10,12 +20,58 @@ export class ClockDrawer {
         this._init();
     }
 
+    render() {
+        const {ANIMATION_SPEED_DEG} = this.settings;
+
+        for (let i = 0; i < this.settings.ROWS; i++) {
+            for (let j = 0; j < this.settings.COLS; j++) {
+                const clock = this.clockElements[i][j];
+                if (!clock.active) {
+                    continue;
+                }
+
+                let changed = false;
+                for (let k = 0; k < clock.angle.length; k++) {
+                    if (clock.angle[k] !== clock.targetAngle[k]) {
+                        if (clock.angle[k] < clock.targetAngle[k]) {
+                            clock.angle[k] += ANIMATION_SPEED_DEG;
+                        } else {
+                            clock.angle[k] -= ANIMATION_SPEED_DEG;
+                        }
+
+                        clock.arrows[k].style.transform = `rotate(${clock.angle[k]}deg)`;
+                        changed = true;
+                    }
+                }
+
+                clock.active = changed;
+            }
+        }
+    }
+
     drawClock() {
-        const {LEFT_OFFSET, TOP_OFFSET, DIGIT_WIDTH} = this.settings;
+        const {LEFT_OFFSET, TOP_OFFSET, DIGIT_WIDTH, ROWS, COLS} = this.settings;
 
         const now = new Date();
         const minutes = now.getMinutes();
         const hours = now.getHours();
+
+        const defaultPosition = Glyphs._convertSymbolToAngle(".")
+
+        const emptyZones = [
+            [range(0, TOP_OFFSET), range(0, COLS)],
+            [range(TOP_OFFSET, ROWS - TOP_OFFSET), range(0, LEFT_OFFSET)],
+            [range(TOP_OFFSET, ROWS - TOP_OFFSET), range(COLS - LEFT_OFFSET, COLS)],
+            [range(ROWS - TOP_OFFSET, ROWS), range(0, COLS)],
+        ];
+
+        for (const zones of emptyZones) {
+            for (const i of zones[0]) {
+                for (const j of zones[1]) {
+                    this._setAngle(this.clockElements[i][j], defaultPosition)
+                }
+            }
+        }
 
         this._setDigit(LEFT_OFFSET, TOP_OFFSET, Math.floor(hours / 10));
         this._setDigit(LEFT_OFFSET + DIGIT_WIDTH, TOP_OFFSET, hours % 10);
@@ -69,9 +125,15 @@ export class ClockDrawer {
 
             for (let j = 0; j < COLS; j++) {
                 const elem = i === 0 && j === 0 ? this.proto : this.proto.cloneNode(true);
+                const hour = elem.getElementsByClassName("hour")[0];
+                const minute = elem.getElementsByClassName("minute")[0];
+
                 row[j] = {
+                    active: false,
                     elem,
-                    angle: [45, 45],
+                    arrows: [hour, minute],
+                    angle: [0, 0],
+                    targetAngle: [0, 0]
                 };
 
                 elem.style.top = MARGIN + i * (SIZE + MARGIN) + "px";
@@ -107,14 +169,9 @@ export class ClockDrawer {
     }
 
     _setAngle(clock, angle) {
-        const elem = clock.elem
         if (clock.angle.some((x, i) => x !== angle[i])) {
-            const hour = elem.getElementsByClassName("hour")[0];
-            const minute = elem.getElementsByClassName("minute")[0];
-
-            minute.style.transform = `rotate(${angle[0]}deg)`;
-            hour.style.transform = `rotate(${angle[1]}deg)`;
-            clock.angle = angle.concat([]);
+            clock.targetAngle = angle.concat([]);
+            clock.active = true;
         }
     }
 }

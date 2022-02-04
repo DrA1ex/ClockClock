@@ -39,6 +39,9 @@ export class Themes {
 }
 
 export class Settings {
+    TARGET_FPS = 60;
+    ANIMATION_SPEED_DEG = 1;
+
     DIGIT_HEIGHT;
     DIGIT_WIDTH;
     TOP_OFFSET;

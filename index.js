@@ -34,3 +34,6 @@ function tick() {
 
     setTimeout(tick, (60 - new Date().getSeconds()) * 1000);
 }
+
+
+setInterval(() => clockDrawer.render(), 1000 / settings.TARGET_FPS);
