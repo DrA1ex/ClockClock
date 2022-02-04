@@ -5,37 +5,37 @@
 
 ## Themes
 ### Light
-![image](https://user-images.githubusercontent.com/1194059/152325055-6210dae1-ae03-4a74-abe4-a5748831bb78.png)
+![image](https://user-images.githubusercontent.com/1194059/152494158-8b449207-ae1b-4536-926f-0f6cbf6394c3.png)
 
 #### Demo: [link](https://dra1ex.github.io/ClockClock?theme=light)
 
 ### Dark
-![image](https://user-images.githubusercontent.com/1194059/152325091-7509d309-0ef5-4b48-916c-40204acf9c16.png)
+![image](https://user-images.githubusercontent.com/1194059/152494182-cc4ba084-1494-43d0-8d4d-d094d9e61a99.png)
 
 #### Demo: [link](https://dra1ex.github.io/ClockClock?theme=dark)
 
 ### Dark Gold
-![image](https://user-images.githubusercontent.com/1194059/152325008-2b7c2185-4f69-4add-909c-1d2667119291.png)
+![image](https://user-images.githubusercontent.com/1194059/152494228-072d7ce2-f51e-435f-8fb4-b69db3300fc7.png)
 
 #### Demo: [link](https://dra1ex.github.io/ClockClock?theme=dark-gold)
 
 ### Light Gold
-![image](https://user-images.githubusercontent.com/1194059/152325125-93dad2fa-6154-4d08-a2e0-1d975e964e34.png)
+![image](https://user-images.githubusercontent.com/1194059/152494264-d1e4f9e0-029f-46be-87a5-ee5af130b545.png)
 
 #### Demo: [link](https://dra1ex.github.io/ClockClock?theme=light-gold)
 
 ### Dark Noir
-![image](https://user-images.githubusercontent.com/1194059/152325391-8575ccf4-6705-43b9-b8c2-45eb4a852f3f.png)
+![image](https://user-images.githubusercontent.com/1194059/152494434-ebc764b5-098d-4d9b-b68b-685d20272909.png)
 
 #### Demo: [link](https://dra1ex.github.io/ClockClock?theme=dark-noir)
 
 ### Blue Coated
-![image](https://user-images.githubusercontent.com/1194059/152360609-be66ce26-5ae7-4059-9570-0f92969dde2b.png)
+![image](https://user-images.githubusercontent.com/1194059/152494320-ae606e04-c460-4f8a-b806-a590c536d996.png)
 
 #### Demo: [link](https://dra1ex.github.io/ClockClock?theme=blue-coated)
 
 ### OLED
-![image](https://user-images.githubusercontent.com/1194059/152384377-b6a6fb54-5e8d-4d4c-b88c-198cbf28e7ff.png)
+![image](https://user-images.githubusercontent.com/1194059/152494355-a20a9272-164b-44e7-b9d0-d06dd677f379.png)
 
 #### Demo: [link](https://dra1ex.github.io/ClockClock?theme=oled)
 
