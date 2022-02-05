@@ -38,3 +38,12 @@ export function ease(current, target, step, threshold = 15, slowDown = 0.3, eps 
 
     return current + step;
 }
+
+export function createGradient(ctx, angle, colors, size) {
+    const [x1, y1] = getPosAtCircle(angle, size);
+    const gradient = ctx.createLinearGradient(-x1, -y1, x1, y1);
+    for (const [color, stop] of colors) {
+        gradient.addColorStop(stop, color);
+    }
+    return gradient;
+}

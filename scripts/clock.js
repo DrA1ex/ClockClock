@@ -1,5 +1,5 @@
 import {Glyphs} from "./digits.js";
-import {range, getPosAtCircle, ease} from "./utils.js";
+import {createGradient, ease, getPosAtCircle, range} from "./utils.js";
 
 const THEME_GRADIENT = {};
 
@@ -21,13 +21,7 @@ export class ClockDrawer {
 
         if (theme.gradient) {
             if (!THEME_GRADIENT[theme]) {
-                const [x1, y1] = getPosAtCircle(theme.gradient.angle, theme.width / 2);
-                const gradient = this.drawCtx.createLinearGradient(-x1, -y1, x1, y1);
-                for (const [color, stop] of theme.gradient.colors) {
-                    gradient.addColorStop(stop, color);
-                }
-
-                THEME_GRADIENT[theme] = gradient;
+                THEME_GRADIENT[theme] = createGradient(this.drawCtx, theme.gradient.angle, theme.gradient.colors, this.settings.MINUTE_HEIGHT);
             }
 
             this.drawCtx.fillStyle = THEME_GRADIENT[theme];
