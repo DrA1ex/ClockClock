@@ -52,7 +52,7 @@ export class Themes {
             lightX: this.settings.COLS,
             intensity: 2,
             color: "#c99e65",
-            gradient: {angle: 45, colors: [["#c99e65", 0], ["#c5995b", 1]]},
+            gradient: {angle: 0, colors: [["#c99e65", 0], ["#d6b07f", 0.3], ["#c5995b", 1]]},
             width: 4
         };
     }
@@ -63,7 +63,7 @@ export class Themes {
             lightX: this.settings.COLS / 2,
             intensity: 1,
             color: "#383838",
-            gradient: {angle: 45, colors: [["#242424", 0], ["#2a2a2a", 1]]},
+            gradient: {angle: 45, colors: [["#282828", 0], ["#2f2f2f", 1]]},
             width: 8
         };
     }
