@@ -91,8 +91,8 @@ export class Themes {
 }
 
 export class Settings {
-    TARGET_FPS = 60;
-    ANIMATION_SPEED_DEG = 1;
+    TARGET_FPS;
+    ANIMATION_SPEED_DEG;
 
     DIGIT_HEIGHT;
     DIGIT_WIDTH;
@@ -109,6 +109,11 @@ export class Settings {
     constructor() {
         const urlSearchParams = new URLSearchParams(window.location.search);
         this.params = Object.fromEntries(urlSearchParams.entries());
+
+        this.TARGET_FPS = ~~this.params["fps"] || 60;
+
+        const speedValue = Number.parseFloat(this.params["speed"]);
+        this.ANIMATION_SPEED_DEG = (speedValue > 0 && Number.isFinite(speedValue) ? speedValue : 60) / this.TARGET_FPS;
 
         this.DIGIT_HEIGHT = Glyphs.Digits[0].length
         this.DIGIT_WIDTH = Glyphs.Digits[0][0].length

@@ -1,25 +1,7 @@
 import {Glyphs} from "./digits.js";
+import {range, getPosAtCircle, ease} from "./utils.js";
 
-const PI_DEG = Math.PI / 180;
 const THEME_GRADIENT = {};
-
-function range(from, to) {
-    function* _range(from, to) {
-        for (let i = from; i < to; ++i) {
-            yield i;
-        }
-    }
-
-    return Array.from(_range(from, to));
-}
-
-function degToRad(deg) {
-    return deg * PI_DEG;
-}
-
-function getPosAtCircle(angle, radius) {
-    return [radius * Math.cos(degToRad(angle)), radius * Math.sin(degToRad(angle))];
-}
 
 export class ClockDrawer {
     constructor(parent, clockProto, canvas, settings) {
@@ -66,12 +48,7 @@ export class ClockDrawer {
                 let changed = false;
                 for (let k = 0; k < clock.angle.length; k++) {
                     if (clock.angle[k] !== clock.targetAngle[k]) {
-                        if (clock.angle[k] < clock.targetAngle[k]) {
-                            clock.angle[k] = (clock.angle[k] + ANIMATION_SPEED_DEG) % 360;
-                        } else {
-                            clock.angle[k] = (clock.angle[k] - ANIMATION_SPEED_DEG) % 360;
-                        }
-
+                        clock.angle[k] = ease(clock.angle[k], clock.targetAngle[k], ANIMATION_SPEED_DEG) % 360
                         changed = true;
                     }
                 }
@@ -227,27 +204,20 @@ export class ClockDrawer {
         ctx.save();
         ctx.translate(clock.origin[0], clock.origin[1]);
 
-        ctx.clearRect(-SIZE / 2 - theme.width / 2, -SIZE / 2 - theme.width / 2,
-            SIZE + theme.width, SIZE + theme.width);
+        ctx.clearRect(-SIZE / 2 - theme.width / 2, -SIZE / 2 - theme.width / 2, SIZE + theme.width, SIZE + theme.width);
 
         ctx.beginPath();
         ctx.arc(0, 0, theme.width / 2, 0, Math.PI * 2)
         ctx.fill();
 
         ctx.beginPath();
-        {
-            const [x1, y1] = getPosAtCircle(clock.angle[0], HOUR_HEIGHT);
-            ctx.moveTo(0, 0);
-            ctx.lineTo(x1, y1);
-        }
+        ctx.moveTo(0, 0);
+        ctx.lineTo(...getPosAtCircle(clock.angle[0], HOUR_HEIGHT));
         ctx.stroke();
 
         ctx.beginPath();
-        {
-            const [x1, y1] = getPosAtCircle(clock.angle[1], MINUTE_HEIGHT);
-            ctx.moveTo(0, 0)
-            ctx.lineTo(x1, y1);
-        }
+        ctx.moveTo(0, 0)
+        ctx.lineTo(...getPosAtCircle(clock.angle[1], MINUTE_HEIGHT));
         ctx.stroke();
 
         ctx.restore();
