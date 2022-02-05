@@ -20,7 +20,10 @@ export function getPosAtCircle(angle, radius) {
 
 
 export function ease(current, target, step, threshold = 15, slowDown = 0.3, eps = 1e-3) {
-    const diff = Math.abs(target - current);
+    if (target === 0) { //Handle rotation through circle (360°)
+        target = 360;
+    }
+    const diff = Math.abs(target - current)
     if (diff <= eps) {
         return target;
     }
@@ -29,7 +32,7 @@ export function ease(current, target, step, threshold = 15, slowDown = 0.3, eps 
         const past = (threshold - diff) / threshold;
         const factor = 1 - past * (2 - past);
         const next = current + Math.max(step * factor, step * slowDown);
-        return next <= target ? next : target
+        return next < target ? next : target
     }
 
 
