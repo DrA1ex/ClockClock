@@ -1,5 +1,8 @@
 import {Glyphs} from "./digits.js";
 
+const PI_DEG = Math.PI / 180;
+const THEME_GRADIENT = {};
+
 function range(from, to) {
     function* _range(from, to) {
         for (let i = from; i < to; ++i) {
@@ -8,6 +11,14 @@ function range(from, to) {
     }
 
     return Array.from(_range(from, to));
+}
+
+function degToRad(deg) {
+    return deg * PI_DEG;
+}
+
+function getPosAtCircle(angle, radius) {
+    return [radius * Math.cos(degToRad(angle)), radius * Math.sin(degToRad(angle))];
 }
 
 export class ClockDrawer {
@@ -25,6 +36,25 @@ export class ClockDrawer {
     render() {
         const {ANIMATION_SPEED_DEG} = this.settings;
         const theme = this.settings.THEME.theme();
+
+        if (theme.gradient) {
+            if (!THEME_GRADIENT[theme]) {
+                const [x1, y1] = getPosAtCircle(theme.gradient.angle, theme.width / 2);
+                const gradient = this.drawCtx.createLinearGradient(-x1, -y1, x1, y1);
+                for (const [color, stop] of theme.gradient.colors) {
+                    gradient.addColorStop(stop, color);
+                }
+
+                THEME_GRADIENT[theme] = gradient;
+            }
+
+            this.drawCtx.fillStyle = THEME_GRADIENT[theme];
+            this.drawCtx.strokeStyle = THEME_GRADIENT[theme];
+        } else {
+            this.drawCtx.fillStyle = theme.color;
+            this.drawCtx.strokeStyle = theme.color;
+        }
+        this.drawCtx.lineWidth = theme.width;
 
         for (let i = 0; i < this.settings.ROWS; i++) {
             for (let j = 0; j < this.settings.COLS; j++) {
@@ -109,16 +139,22 @@ export class ClockDrawer {
 
     _init() {
         const {MARGIN, SIZE, ROWS, COLS} = this.settings;
-        const theme = this.settings.THEME.theme();
 
         this.parent.style.setProperty("--rows", ROWS.toString());
         this.parent.style.setProperty("--cols", COLS.toString());
 
-        this.canvas.height = MARGIN + ROWS * (SIZE + MARGIN);
-        this.canvas.width = MARGIN + COLS * (SIZE + MARGIN);
+        const canvasHeight = MARGIN + ROWS * (SIZE + MARGIN);
+        const canvasWidth = MARGIN + COLS * (SIZE + MARGIN);
 
-        this.parent.style.height = this.canvas.height + "px";
-        this.parent.style.width = this.canvas.width + "px";
+        this.canvas.height = canvasHeight * 4;
+        this.canvas.width = canvasWidth * 4;
+        this.drawCtx.scale(4, 4);
+
+        this.canvas.style.height = canvasHeight + "px";
+        this.canvas.style.width = canvasWidth + "px";
+
+        this.parent.style.height = canvasHeight + "px";
+        this.parent.style.width = canvasWidth + "px";
 
         this.proto.removeAttribute("id");
         this.proto.style.height = SIZE + "px";
@@ -150,12 +186,11 @@ export class ClockDrawer {
                 };
 
                 this.parent.appendChild(elem);
-
-                this._drawArrows(row[j], theme);
             }
         }
 
         this.updateLighting();
+        this.render();
     }
 
     _setDigit(x, y, d) {
@@ -189,31 +224,32 @@ export class ClockDrawer {
         const {HOUR_HEIGHT, MINUTE_HEIGHT, SIZE} = this.settings;
         const ctx = this.drawCtx;
 
-        ctx.clearRect(clock.origin[0] - SIZE / 2 - theme.width / 2, clock.origin[1] - SIZE / 2 - theme.width / 2,
+        ctx.save();
+        ctx.translate(clock.origin[0], clock.origin[1]);
+
+        ctx.clearRect(-SIZE / 2 - theme.width / 2, -SIZE / 2 - theme.width / 2,
             SIZE + theme.width, SIZE + theme.width);
 
-        ctx.fillStyle = theme.color;
-        ctx.strokeStyle = theme.color;
-        ctx.lineWidth = theme.width;
-
         ctx.beginPath();
-        ctx.arc(clock.origin[0], clock.origin[1], theme.width / 2, 0, Math.PI * 2)
+        ctx.arc(0, 0, theme.width / 2, 0, Math.PI * 2)
         ctx.fill();
 
         ctx.beginPath();
-        ctx.moveTo(clock.origin[0], clock.origin[1])
-        ctx.lineTo(
-            clock.origin[0] + Math.cos(clock.angle[0] * (Math.PI / 180)) * HOUR_HEIGHT,
-            clock.origin[1] + Math.sin(clock.angle[0] * (Math.PI / 180)) * HOUR_HEIGHT
-        )
+        {
+            const [x1, y1] = getPosAtCircle(clock.angle[0], HOUR_HEIGHT);
+            ctx.moveTo(0, 0);
+            ctx.lineTo(x1, y1);
+        }
         ctx.stroke();
 
         ctx.beginPath();
-        ctx.moveTo(clock.origin[0], clock.origin[1])
-        ctx.lineTo(
-            clock.origin[0] + Math.cos(clock.angle[1] * (Math.PI / 180)) * MINUTE_HEIGHT,
-            clock.origin[1] + Math.sin(clock.angle[1] * (Math.PI / 180)) * MINUTE_HEIGHT
-        )
+        {
+            const [x1, y1] = getPosAtCircle(clock.angle[1], MINUTE_HEIGHT);
+            ctx.moveTo(0, 0)
+            ctx.lineTo(x1, y1);
+        }
         ctx.stroke();
+
+        ctx.restore();
     }
 }

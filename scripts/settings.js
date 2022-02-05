@@ -19,6 +19,7 @@ export class Themes {
             lightX: this.settings.COLS / 2,
             intensity: 1,
             color: "black",
+            gradient: null,
             width: 4
         };
     }
@@ -29,6 +30,7 @@ export class Themes {
             lightX: this.settings.COLS / 2,
             intensity: 1,
             color: "white",
+            gradient: null,
             width: 4
         };
     }
@@ -39,6 +41,7 @@ export class Themes {
             lightX: this.settings.COLS / 2,
             intensity: 1,
             color: "#e6b77f",
+            gradient: {angle: 45, colors: [["#e2af75", 0], ["#deb682", 1]]},
             width: 4
         };
     }
@@ -49,6 +52,7 @@ export class Themes {
             lightX: this.settings.COLS,
             intensity: 2,
             color: "#c99e65",
+            gradient: {angle: 45, colors: [["#c99e65", 0], ["#c5995b", 1]]},
             width: 4
         };
     }
@@ -59,6 +63,7 @@ export class Themes {
             lightX: this.settings.COLS / 2,
             intensity: 1,
             color: "#383838",
+            gradient: {angle: 45, colors: [["#242424", 0], ["#2a2a2a", 1]]},
             width: 8
         };
     }
@@ -69,6 +74,7 @@ export class Themes {
             lightX: this.settings.COLS / 2,
             intensity: 1,
             color: "#242424",
+            gradient: {angle: 45, colors: [["#b3b6bc", 0], ["#8a8b8c", 0.2], ["#cacacb", 0.9]]},
             width: 4
         };
     }
