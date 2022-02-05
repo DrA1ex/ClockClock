@@ -103,25 +103,25 @@ export class Glyphs {
     static _convertSymbolToAngle(symbol) {
         switch (symbol) {
             case "╔":
-                return [0, 270];
-
-            case "╚":
-                return [180, 270];
-
-            case "╗":
                 return [0, 90];
 
-            case "╝":
+            case "╚":
+                return [0, 270];
+
+            case "╗":
                 return [180, 90];
 
+            case "╝":
+                return [180, 270];
+
             case "║":
-                return [180, 0];
+                return [270, 90];
 
             case "═":
-                return [90, 270];
+                return [0, 180];
 
             default:
-                return [45, 45];
+                return [135, 135];
         }
     }
 }

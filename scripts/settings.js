@@ -17,7 +17,21 @@ export class Themes {
         return {
             lightY: -6,
             lightX: this.settings.COLS / 2,
-            intensity: 1
+            intensity: 1,
+            color: "black",
+            gradient: null,
+            width: 4
+        };
+    }
+
+    get dark() {
+        return {
+            lightY: -6,
+            lightX: this.settings.COLS / 2,
+            intensity: 1,
+            color: "white",
+            gradient: null,
+            width: 4
         };
     }
 
@@ -25,7 +39,10 @@ export class Themes {
         return {
             lightY: this.settings.ROWS + 6,
             lightX: this.settings.COLS / 2,
-            intensity: 1
+            intensity: 1,
+            color: "#e6b77f",
+            gradient: {angle: 45, colors: [["#e2af75", 0], ["#deb682", 1]]},
+            width: 4
         };
     }
 
@@ -33,12 +50,50 @@ export class Themes {
         return {
             lightY: this.settings.ROWS / 2,
             lightX: this.settings.COLS,
-            intensity: 2
+            intensity: 2,
+            color: "#c99e65",
+            gradient: {angle: 0, colors: [["#c99e65", 0], ["#d6b07f", 0.3], ["#c5995b", 1]]},
+            width: 4
         };
+    }
+
+    get ["dark-noir"]() {
+        return {
+            lightY: -6,
+            lightX: this.settings.COLS / 2,
+            intensity: 1,
+            color: "#383838",
+            gradient: {angle: 45, colors: [["#282828", 0], ["#2f2f2f", 1]]},
+            width: 8
+        };
+    }
+
+    get ["blue-coated"]() {
+        return {
+            lightY: -6,
+            lightX: this.settings.COLS / 2,
+            intensity: 1,
+            color: "#242424",
+            gradient: {angle: 45, colors: [["#b3b6bc", 0], ["#8a8b8c", 0.2], ["#cacacb", 0.9]]},
+            width: 4
+        };
+    }
+
+    get oled() {
+        return {
+            lightY: -6,
+            lightX: this.settings.COLS / 2,
+            intensity: 1,
+            color: "#323232",
+            width: 4
+        }
     }
 }
 
 export class Settings {
+    TARGET_FPS;
+    ANIMATION_SPEED_DEG;
+
     DIGIT_HEIGHT;
     DIGIT_WIDTH;
     TOP_OFFSET;
@@ -54,6 +109,11 @@ export class Settings {
     constructor() {
         const urlSearchParams = new URLSearchParams(window.location.search);
         this.params = Object.fromEntries(urlSearchParams.entries());
+
+        this.TARGET_FPS = ~~this.params["fps"] || 60;
+
+        const speedValue = Number.parseFloat(this.params["speed"]);
+        this.ANIMATION_SPEED_DEG = (speedValue > 0 && Number.isFinite(speedValue) ? speedValue : 60) / this.TARGET_FPS;
 
         this.DIGIT_HEIGHT = Glyphs.Digits[0].length
         this.DIGIT_WIDTH = Glyphs.Digits[0][0].length

@@ -1,21 +1,84 @@
 import {Glyphs} from "./digits.js";
+import {createGradient, ease, getPosAtCircle, range} from "./utils.js";
+
+const THEME_GRADIENT = {};
 
 export class ClockDrawer {
-    constructor(parent, clockProto, settings) {
+    constructor(parent, clockProto, canvas, settings) {
         this.settings = settings;
         this.parent = parent;
         this.proto = clockProto;
+        this.canvas = canvas;
+        this.drawCtx = this.canvas.getContext("2d");
         this.clockElements = null;
 
         this._init();
     }
 
+    render() {
+        const {ANIMATION_SPEED_DEG} = this.settings;
+        const theme = this.settings.THEME.theme();
+
+        if (theme.gradient) {
+            if (!THEME_GRADIENT[theme]) {
+                THEME_GRADIENT[theme] = createGradient(this.drawCtx, theme.gradient.angle, theme.gradient.colors, this.settings.MINUTE_HEIGHT);
+            }
+
+            this.drawCtx.fillStyle = THEME_GRADIENT[theme];
+            this.drawCtx.strokeStyle = THEME_GRADIENT[theme];
+        } else {
+            this.drawCtx.fillStyle = theme.color;
+            this.drawCtx.strokeStyle = theme.color;
+        }
+        this.drawCtx.lineWidth = theme.width;
+
+        for (let i = 0; i < this.settings.ROWS; i++) {
+            for (let j = 0; j < this.settings.COLS; j++) {
+                const clock = this.clockElements[i][j];
+                if (!clock.active) {
+                    continue;
+                }
+
+                let changed = false;
+                for (let k = 0; k < clock.angle.length; k++) {
+                    if (clock.angle[k] !== clock.targetAngle[k]) {
+                        clock.angle[k] = ease(clock.angle[k], clock.targetAngle[k], ANIMATION_SPEED_DEG) % 360
+                        changed = true;
+                    }
+                }
+
+                if (changed) {
+                    this._drawArrows(clock, theme);
+                }
+
+                clock.active = changed;
+            }
+        }
+    }
+
     drawClock() {
-        const {LEFT_OFFSET, TOP_OFFSET, DIGIT_WIDTH} = this.settings;
+        const {LEFT_OFFSET, TOP_OFFSET, DIGIT_WIDTH, ROWS, COLS} = this.settings;
 
         const now = new Date();
         const minutes = now.getMinutes();
         const hours = now.getHours();
+
+        const defaultPosition = Glyphs._convertSymbolToAngle(".")
+
+        const emptyZones = [
+            [range(0, TOP_OFFSET), range(0, COLS)],
+            [range(TOP_OFFSET, ROWS - TOP_OFFSET), range(0, LEFT_OFFSET)],
+            [range(TOP_OFFSET, ROWS - TOP_OFFSET), range(COLS - LEFT_OFFSET, COLS)],
+            [range(ROWS - TOP_OFFSET, ROWS), range(0, COLS)],
+        ];
+
+        for (const zones of emptyZones) {
+            for (const i of zones[0]) {
+                for (const j of zones[1]) {
+                    this._setAngle(this.clockElements[i][j], defaultPosition)
+                }
+            }
+        }
 
         this._setDigit(LEFT_OFFSET, TOP_OFFSET, Math.floor(hours / 10));
         this._setDigit(LEFT_OFFSET + DIGIT_WIDTH, TOP_OFFSET, hours % 10);
@@ -46,16 +109,23 @@ export class ClockDrawer {
     }
 
     _init() {
-        const {MARGIN, SIZE, ROWS, COLS, HOUR_HEIGHT, MINUTE_HEIGHT} = this.settings;
-
-        this.proto.getElementsByClassName("hour")[0].style.height = HOUR_HEIGHT + "px";
-        this.proto.getElementsByClassName("minute")[0].style.height = MINUTE_HEIGHT + "px";
+        const {MARGIN, SIZE, ROWS, COLS} = this.settings;
 
         this.parent.style.setProperty("--rows", ROWS.toString());
         this.parent.style.setProperty("--cols", COLS.toString());
 
-        this.parent.style.height = MARGIN + ROWS * (SIZE + MARGIN) + "px";
-        this.parent.style.width = MARGIN + COLS * (SIZE + MARGIN) + "px";
+        const canvasHeight = MARGIN + ROWS * (SIZE + MARGIN);
+        const canvasWidth = MARGIN + COLS * (SIZE + MARGIN);
+
+        this.canvas.height = canvasHeight * 4;
+        this.canvas.width = canvasWidth * 4;
+        this.drawCtx.scale(4, 4);
+
+        this.canvas.style.height = canvasHeight + "px";
+        this.canvas.style.width = canvasWidth + "px";
+
+        this.parent.style.height = canvasHeight + "px";
+        this.parent.style.width = canvasWidth + "px";
 
         this.proto.removeAttribute("id");
         this.proto.style.height = SIZE + "px";
@@ -69,21 +139,29 @@ export class ClockDrawer {
 
             for (let j = 0; j < COLS; j++) {
                 const elem = i === 0 && j === 0 ? this.proto : this.proto.cloneNode(true);
-                row[j] = {
-                    elem,
-                    angle: [45, 45],
-                };
 
-                elem.style.top = MARGIN + i * (SIZE + MARGIN) + "px";
-                elem.style.left = MARGIN + j * (SIZE + MARGIN) + "px";
+                const top = MARGIN + i * (SIZE + MARGIN);
+                const left = MARGIN + j * (SIZE + MARGIN);
+
+                elem.style.top = top + "px";
+                elem.style.left = left + "px";
                 elem.style.setProperty("--x", j.toString());
                 elem.style.setProperty("--y", i.toString());
+
+                row[j] = {
+                    active: false,
+                    elem,
+                    origin: [left + SIZE / 2 + 2, top + SIZE / 2 + 2], // +2 for container and clock border
+                    angle: [0, 0],
+                    targetAngle: [0, 0]
+                };
 
                 this.parent.appendChild(elem);
             }
         }
 
         this.updateLighting();
+        this.render();
     }
 
     _setDigit(x, y, d) {
@@ -107,14 +185,35 @@ export class ClockDrawer {
     }
 
     _setAngle(clock, angle) {
-        const elem = clock.elem
         if (clock.angle.some((x, i) => x !== angle[i])) {
-            const hour = elem.getElementsByClassName("hour")[0];
-            const minute = elem.getElementsByClassName("minute")[0];
-
-            minute.style.transform = `rotate(${angle[0]}deg)`;
-            hour.style.transform = `rotate(${angle[1]}deg)`;
-            clock.angle = angle.concat([]);
+            clock.targetAngle = angle.concat([]);
+            clock.active = true;
         }
+    }
+
+    _drawArrows(clock, theme) {
+        const {HOUR_HEIGHT, MINUTE_HEIGHT, SIZE} = this.settings;
+        const ctx = this.drawCtx;
+
+        ctx.save();
+        ctx.translate(clock.origin[0], clock.origin[1]);
+
+        ctx.clearRect(-SIZE / 2 - theme.width / 2, -SIZE / 2 - theme.width / 2, SIZE + theme.width, SIZE + theme.width);
+
+        ctx.beginPath();
+        ctx.arc(0, 0, theme.width / 2, 0, Math.PI * 2)
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(...getPosAtCircle(clock.angle[0], HOUR_HEIGHT));
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(0, 0)
+        ctx.lineTo(...getPosAtCircle(clock.angle[1], MINUTE_HEIGHT));
+        ctx.stroke();
+
+        ctx.restore();
     }
 }
