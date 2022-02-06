@@ -47,5 +47,7 @@
 - **clock_minute** – height of a minute arrow in px (default: <_clock_size_>)
 - **bg** – special backgroud mode. Supported values: oled (default: _none_)
 - **mode** – special display mode. Supported values: fullscreen (default: _none_)
+- **speed** - animation speed in degrees/second (default: _60_)
+- **fps** - animation frequency in renders/second (default: _60_)
 
 **Example**: [link](https://dra1ex.github.io/ClockClock?theme=dark-gold&clock_size=64&clock_margin=24&clock_hour=24&clock_minute=48&bg=oled&mode=fullscreen)
