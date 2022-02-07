@@ -119,14 +119,14 @@ export class Settings {
         const speedValue = Number.parseFloat(this.params["speed"]);
         this.ANIMATION_SPEED_DEG = (speedValue > 0 && Number.isFinite(speedValue) ? speedValue : 60) / this.TARGET_FPS;
 
-        this.DIGIT_HEIGHT = Glyphs.Digits[0].length
-        this.DIGIT_WIDTH = Glyphs.Digits[0][0].length
+        this.DIGIT_HEIGHT = Glyphs.Digits[0].length;
+        this.DIGIT_WIDTH = Glyphs.Digits[0][0].length;
 
-        this.TOP_OFFSET = 1;
-        this.LEFT_OFFSET = 1;
+        this.TOP_OFFSET = ~~this.params["top"] || 1;
+        this.LEFT_OFFSET = ~~this.params["left"] || 1;
 
-        this.ROWS = 2 + this.DIGIT_HEIGHT;
-        this.COLS = 4 + this.DIGIT_WIDTH * 4;
+        this.ROWS = this.TOP_OFFSET * 2 + this.DIGIT_HEIGHT;
+        this.COLS = this.LEFT_OFFSET * 2 + this.DIGIT_WIDTH * 4 + 2;
 
         this.SIZE = ~~this.params["clock_size"] || 36;
         this.MARGIN = ~~this.params["clock_margin"] || 8;

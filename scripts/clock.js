@@ -99,7 +99,7 @@ export class ClockDrawer {
         for (const zones of emptyZones) {
             for (const i of zones[0]) {
                 for (const j of zones[1]) {
-                    this.setAngle(this.clockElements[i][j], defaultPosition)
+                    this.setAngle(i, j, defaultPosition)
                 }
             }
         }
@@ -110,7 +110,7 @@ export class ClockDrawer {
         this._setDigit(LEFT_OFFSET + 2 + DIGIT_WIDTH * 2, TOP_OFFSET, Math.floor(minute / 10));
         this._setDigit(LEFT_OFFSET + 2 + DIGIT_WIDTH * 3, TOP_OFFSET, minute % 10);
 
-        this._setSymbol(LEFT_OFFSET + DIGIT_WIDTH * 2, 1, Glyphs.SymbolsEnum.colon);
+        this._setSymbol(LEFT_OFFSET + DIGIT_WIDTH * 2, TOP_OFFSET, Glyphs.SymbolsEnum.colon);
     }
 
     updateLighting() {
@@ -207,15 +207,18 @@ export class ClockDrawer {
 
     _setGlyphByAngles(x, y, angles) {
         for (let i = 0; i < angles.length; i++) {
-            const row = this.clockElements[y + i];
             const rowAngle = angles[i];
             for (let j = 0; j < angles[i].length; j++) {
-                this.setAngle(row[x + j], rowAngle[j]);
+                this.setAngle(y + i, x + j, rowAngle[j]);
             }
         }
     }
 
-    setAngle(clock, angle) {
+    setAngle(row, col, angle) {
+        this._setAngle(this.clockElements[row][col], angle);
+    }
+
+    _setAngle(clock, angle) {
         if (clock.angle.some((x, i) => x !== angle[i])) {
             clock.targetAngle = angle.concat([]);
             clock.active = true;

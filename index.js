@@ -61,7 +61,7 @@ function flex(left) {
     if (lastFlexInitRow > 0) {
         --lastFlexInitRow;
         for (let i = 0; i < settings.ROWS; i++) {
-            clockDrawer.setAngle(clockDrawer.clockElements[i][lastFlexInitRow], [135, 315]);
+            clockDrawer.setAngle(i, lastFlexInitRow, [135, 315]);
         }
     } else if (lastFlexCol > 0) {
         clockDrawer.mode = ClockDrawer.Mode.flex;
