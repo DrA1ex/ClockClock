@@ -91,6 +91,10 @@ export class Themes {
 }
 
 export class Settings {
+    FLEX_DELAY = 8;
+    FLEX_INIT_PHASE_DELAY = 1.2;
+    FLEX_PHASE_DELAY = 0.2;
+
     TARGET_FPS;
     ANIMATION_SPEED_DEG;
 

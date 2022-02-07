@@ -1,9 +1,11 @@
 import {Glyphs} from "./digits.js";
-import {createGradient, ease, getPosAtCircle, range} from "./utils.js";
+import {circleDegDiff, createGradient, ease, getPosAtCircle, range} from "./utils.js";
 
 const THEME_GRADIENT = {};
 
 export class ClockDrawer {
+    static Mode = {target: 0, flex: 1};
+
     constructor(parent, clockProto, canvas, settings) {
         this.settings = settings;
         this.parent = parent;
@@ -11,12 +13,14 @@ export class ClockDrawer {
         this.canvas = canvas;
         this.drawCtx = this.canvas.getContext("2d");
         this.clockElements = null;
+        this.columnConfig = null;
+
+        this.mode = ClockDrawer.Mode.target;
 
         this._init();
     }
 
     render() {
-        const {ANIMATION_SPEED_DEG} = this.settings;
         const theme = this.settings.THEME.theme();
 
         if (theme.gradient) {
@@ -33,35 +37,55 @@ export class ClockDrawer {
         this.drawCtx.lineWidth = theme.width;
 
         for (let i = 0; i < this.settings.ROWS; i++) {
+            const row = this.clockElements[i];
             for (let j = 0; j < this.settings.COLS; j++) {
-                const clock = this.clockElements[i][j];
-                if (!clock.active) {
-                    continue;
-                }
-
-                let changed = false;
-                for (let k = 0; k < clock.angle.length; k++) {
-                    if (clock.angle[k] !== clock.targetAngle[k]) {
-                        clock.angle[k] = ease(clock.angle[k], clock.targetAngle[k], ANIMATION_SPEED_DEG) % 360
-                        changed = true;
-                    }
+                const clock = row[j];
+                let changed;
+                if (this.mode === ClockDrawer.Mode.flex && this.columnConfig[j].flex) {
+                    changed = this.renderFlex(i, j, clock);
+                } else {
+                    changed = this.renderClock(i, j, clock);
                 }
 
                 if (changed) {
                     this._drawArrows(clock, theme);
                 }
 
-                clock.active = changed;
             }
         }
     }
 
-    drawClock() {
-        const {LEFT_OFFSET, TOP_OFFSET, DIGIT_WIDTH, ROWS, COLS} = this.settings;
+    renderClock(row, col, clock) {
+        if (!clock.active) {
+            return false;
+        }
 
-        const now = new Date();
-        const minutes = now.getMinutes();
-        const hours = now.getHours();
+        let changed = false;
+        for (let k = 0; k < clock.angle.length; k++) {
+            if (clock.angle[k] !== clock.targetAngle[k]) {
+                clock.angle[k] = ease(clock.angle[k], clock.targetAngle[k], this.settings.ANIMATION_SPEED_DEG) % 360
+                changed = true;
+            }
+        }
+
+        clock.active = changed;
+        return changed;
+    }
+
+    renderFlex(row, col, clock) {
+        if (this.columnConfig[col].flex) {
+            for (let k = 0; k < clock.angle.length; k++) {
+                clock.angle[k] = (clock.angle[k] + this.settings.ANIMATION_SPEED_DEG) % 360;
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+    setTime(hour, minute) {
+        const {LEFT_OFFSET, TOP_OFFSET, DIGIT_WIDTH, ROWS, COLS} = this.settings;
 
         const defaultPosition = Glyphs._convertSymbolToAngle(".")
 
@@ -75,16 +99,16 @@ export class ClockDrawer {
         for (const zones of emptyZones) {
             for (const i of zones[0]) {
                 for (const j of zones[1]) {
-                    this._setAngle(this.clockElements[i][j], defaultPosition)
+                    this.setAngle(this.clockElements[i][j], defaultPosition)
                 }
             }
         }
 
-        this._setDigit(LEFT_OFFSET, TOP_OFFSET, Math.floor(hours / 10));
-        this._setDigit(LEFT_OFFSET + DIGIT_WIDTH, TOP_OFFSET, hours % 10);
+        this._setDigit(LEFT_OFFSET, TOP_OFFSET, Math.floor(hour / 10));
+        this._setDigit(LEFT_OFFSET + DIGIT_WIDTH, TOP_OFFSET, hour % 10);
 
-        this._setDigit(LEFT_OFFSET + 2 + DIGIT_WIDTH * 2, TOP_OFFSET, Math.floor(minutes / 10));
-        this._setDigit(LEFT_OFFSET + 2 + DIGIT_WIDTH * 3, TOP_OFFSET, minutes % 10);
+        this._setDigit(LEFT_OFFSET + 2 + DIGIT_WIDTH * 2, TOP_OFFSET, Math.floor(minute / 10));
+        this._setDigit(LEFT_OFFSET + 2 + DIGIT_WIDTH * 3, TOP_OFFSET, minute % 10);
 
         this._setSymbol(LEFT_OFFSET + DIGIT_WIDTH * 2, 1, Glyphs.SymbolsEnum.colon);
     }
@@ -130,6 +154,13 @@ export class ClockDrawer {
         this.proto.removeAttribute("id");
         this.proto.style.height = SIZE + "px";
         this.proto.style.width = SIZE + "px";
+
+        this.columnConfig = new Array(COLS);
+        for (let i = 0; i < COLS; i++) {
+            this.columnConfig[i] = {
+                flex: false
+            }
+        }
 
         this.clockElements = new Array(ROWS);
 
@@ -179,12 +210,12 @@ export class ClockDrawer {
             const row = this.clockElements[y + i];
             const rowAngle = angles[i];
             for (let j = 0; j < angles[i].length; j++) {
-                this._setAngle(row[x + j], rowAngle[j]);
+                this.setAngle(row[x + j], rowAngle[j]);
             }
         }
     }
 
-    _setAngle(clock, angle) {
+    setAngle(clock, angle) {
         if (clock.angle.some((x, i) => x !== angle[i])) {
             clock.targetAngle = angle.concat([]);
             clock.active = true;

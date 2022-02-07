@@ -47,3 +47,7 @@ export function createGradient(ctx, angle, colors, size) {
     }
     return gradient;
 }
+
+export function circleDegDiff(angle1, angle2) {
+    return Math.abs((angle1 || 360) - (angle2 || 360)) % 360;
+}
