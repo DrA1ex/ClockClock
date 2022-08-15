@@ -39,6 +39,45 @@
 
 #### Demo: [link](https://dra1ex.github.io/ClockClock/?theme=oled)
 
+### Desktop background via _Plush_ (MacOS)
+<img width="1645" alt="image" src="https://user-images.githubusercontent.com/1194059/184614057-3f1fe4cb-c472-4bf8-bb9c-56d87706d19a.png">
+
+<details>
+<summary>CSS code</summary>
+
+```css
+:root {
+    margin-bottom: 80px !important;
+}
+
+.container {
+	background: transparent !important;
+}
+
+.background {
+  background: rgba(225, 225, 225, 0.05) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1)  !important;
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(224, 224, 224, 0.1) !important;
+}
+
+.clock {
+  --clock-box-shadow-color: rgb(78 78 78 / 40%) !important;
+  border: 1px solid #e7e7e710 !important;
+  background: #ffffff10 !important;
+}
+
+```
+</details>
+
+<details>
+<summary>URL params</summary>
+
+```
+/?theme=light&clock_size=54
+```
+</details>
+
 ## Settings
 - **theme** – theme configuration (one of above)
 - **clock_size** – diameter of a clock circe in px (default: _36_)
