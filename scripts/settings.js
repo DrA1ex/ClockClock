@@ -108,6 +108,7 @@ export class Settings {
     MARGIN;
     HOUR_HEIGHT;
     MINUTE_HEIGHT;
+    WIDTH;
     THEME;
 
     constructor() {
@@ -133,6 +134,7 @@ export class Settings {
 
         this.HOUR_HEIGHT = ~~this.params["clock_hour"] || (this.SIZE / 2 - 2);
         this.MINUTE_HEIGHT = ~~this.params["clock_minute"] || (this.SIZE / 2);
+        this.WIDTH = ~~this.params["clock_width"];
 
         this.THEME = new Themes(this);
     }

@@ -1,5 +1,5 @@
 import {Glyphs} from "./digits.js";
-import {circleDegDiff, createGradient, ease, getPosAtCircle, range} from "./utils.js";
+import {createGradient, ease, getPosAtCircle, range} from "./utils.js";
 
 const THEME_GRADIENT = {};
 
@@ -34,7 +34,7 @@ export class ClockDrawer {
             this.drawCtx.fillStyle = theme.color;
             this.drawCtx.strokeStyle = theme.color;
         }
-        this.drawCtx.lineWidth = theme.width;
+        this.drawCtx.lineWidth = this.settings.WIDTH || theme.width;
 
         for (let i = 0; i < this.settings.ROWS; i++) {
             const row = this.clockElements[i];
@@ -226,16 +226,17 @@ export class ClockDrawer {
     }
 
     _drawArrows(clock, theme) {
-        const {HOUR_HEIGHT, MINUTE_HEIGHT, SIZE} = this.settings;
+        const {HOUR_HEIGHT, MINUTE_HEIGHT, SIZE, WIDTH} = this.settings;
+        const clockWidth = WIDTH || theme.width;
         const ctx = this.drawCtx;
 
         ctx.save();
         ctx.translate(clock.origin[0], clock.origin[1]);
 
-        ctx.clearRect(-SIZE / 2 - theme.width / 2, -SIZE / 2 - theme.width / 2, SIZE + theme.width, SIZE + theme.width);
+        ctx.clearRect(-SIZE / 2 - clockWidth / 2, -SIZE / 2 - clockWidth / 2, SIZE + clockWidth, SIZE + clockWidth);
 
         ctx.beginPath();
-        ctx.arc(0, 0, theme.width / 2, 0, Math.PI * 2)
+        ctx.arc(0, 0, clockWidth / 2, 0, Math.PI * 2)
         ctx.fill();
 
         ctx.beginPath();

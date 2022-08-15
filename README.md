@@ -45,6 +45,7 @@
 - **clock_margin** – margin beetween each clock in px (default: _8_)
 - **clock_hour** – height of a hour arrow in px (default: <_clock_size_ - 2>)
 - **clock_minute** – height of a minute arrow in px (default: <_clock_size_>)
+- **clock_width** – width of arrows in px (default: _theme specific_)
 - **bg** – special backgroud mode. Supported values: oled (default: _none_)
 - **mode** – special display mode. Supported values: fullscreen (default: _none_)
 - **speed** - animation speed in degrees/second (default: _60_)
