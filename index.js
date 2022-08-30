@@ -8,14 +8,17 @@ const canvas = document.getElementById("canvas");
 const settings = new Settings();
 const clockDrawer = new ClockDrawer(parent, proto, canvas, settings);
 
+const BACKGROUNDS = ["oled", "nasa_earth", "nasa_nebula", "nasa_tunnel", "new_zeland", "switzerland",
+    "windows_blue", "windows_green", "windows_light"];
+
 window.global = clockDrawer;
 
 if (settings.THEME.key) {
     settings.addClass(document.body, `${settings.THEME.key}-theme`);
 }
 
-if (settings.params["bg"] === "oled") {
-    settings.addClass(document.body, "oled-bg");
+if (BACKGROUNDS.includes(settings.params["bg"])) {
+    settings.addClass(document.body, `${settings.params["bg"]}-bg`);
 }
 
 if (settings.params["mode"] === "fullscreen") {

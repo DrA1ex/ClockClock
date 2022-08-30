@@ -88,6 +88,17 @@ export class Themes {
             width: 4
         }
     }
+
+    get glass() {
+        return {
+            lightY: -6,
+            lightX: this.settings.COLS / 2,
+            intensity: 1,
+            color: "black",
+            gradient: null,
+            width: 4
+        };
+    }
 }
 
 export class Settings {

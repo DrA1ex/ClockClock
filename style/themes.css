@@ -117,3 +117,22 @@
     box-shadow: none;
     --clock-arrow-color: #323232;
 }
+
+/* Glass Theme */
+
+.glass-theme .container {
+	background: transparent;
+}
+
+.glass-theme .background {
+    background: rgba(225, 225, 225, 0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(224, 224, 224, 0.1);
+}
+
+.glass-theme .clock {
+    --clock-box-shadow-color: rgb(78 78 78 / 40%);
+    border: 1px solid #e7e7e710;
+    background: #ffffff10;
+}
