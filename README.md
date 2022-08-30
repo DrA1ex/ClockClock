@@ -2,7 +2,6 @@
 
 ![clock_clock](https://user-images.githubusercontent.com/1194059/152324919-765dd671-aa98-4011-9d2a-2d5697b66ba9.gif)
 
-
 ## Themes
 ### Light
 ![image](https://user-images.githubusercontent.com/1194059/152494158-8b449207-ae1b-4536-926f-0f6cbf6394c3.png)
@@ -39,44 +38,10 @@
 
 #### Demo: [link](https://dra1ex.github.io/ClockClock/?theme=oled)
 
-### Desktop background via _Plush_ (MacOS)
+### Glass
 <img width="1645" alt="image" src="https://user-images.githubusercontent.com/1194059/184614057-3f1fe4cb-c472-4bf8-bb9c-56d87706d19a.png">
 
-<details>
-<summary>CSS code</summary>
-
-```css
-:root {
-    margin-bottom: 80px !important;
-}
-
-.container {
-	background: transparent !important;
-}
-
-.background {
-  background: rgba(225, 225, 225, 0.05) !important;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1)  !important;
-  -webkit-backdrop-filter: blur(4px);
-  border: 1px solid rgba(224, 224, 224, 0.1) !important;
-}
-
-.clock {
-  --clock-box-shadow-color: rgb(78 78 78 / 40%) !important;
-  border: 1px solid #e7e7e710 !important;
-  background: #ffffff10 !important;
-}
-
-```
-</details>
-
-<details>
-<summary>URL params</summary>
-
-```
-/?theme=light&clock_size=54
-```
-</details>
+#### Demo: [link](https://dra1ex.github.io/ClockClock/?theme=glass&bg=windows_light&clock_size=50&clock_margin=10&clock_width=5&clock_hour=18&clock_minute=22&fps=100)
 
 ## Settings
 - **theme** – theme configuration (one of above)
@@ -85,7 +50,7 @@
 - **clock_hour** – height of a hour arrow in px (default: <_clock_size_ - 2>)
 - **clock_minute** – height of a minute arrow in px (default: <_clock_size_>)
 - **clock_width** – width of arrows in px (default: _theme specific_)
-- **bg** – special backgroud mode. Supported values: oled (default: _none_)
+- **bg** – special backgroud mode. Supported values: oled, [other...](bg/) (default: _none_)
 - **mode** – special display mode. Supported values: fullscreen (default: _none_)
 - **speed** - animation speed in degrees/second (default: _60_)
 - **fps** - animation frequency in renders/second (default: _60_)
