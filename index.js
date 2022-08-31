@@ -32,6 +32,11 @@ if (settings.params["mode"] === "fullscreen") {
     document.body.style.zoom = zoom.toString();
 }
 
+let flexEnabled = true;
+if (settings.params["flex"] === "off") {
+    flexEnabled = false;
+}
+
 setTimeout(clock, 100);
 let lastFlexInitRow;
 let lastFlexCol;
@@ -45,7 +50,7 @@ function clock() {
     clockDrawer.mode = ClockDrawer.Mode.target;
     clockDrawer.setTime(hours, minutes);
 
-    if (secondsLeft > settings.FLEX_DELAY) {
+    if (flexEnabled && secondsLeft > settings.FLEX_DELAY) {
         setTimeout(() => {
             for (const item of clockDrawer.columnConfig) {
                 item.flex = false;
