@@ -56,7 +56,11 @@ let lastFlexCol;
 
 function clock() {
     const now = new Date();
-    const hours = now.getHours();
+    let hours = now.getHours();
+    if (settings.TIME_FORMAT === 12) {
+        hours = hours % 12 || 12;
+    }
+
     const minutes = now.getMinutes();
     const secondsLeft = 60 - now.getSeconds();
 

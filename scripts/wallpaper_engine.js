@@ -35,6 +35,7 @@ export function registerHandlers(settings) {
             if (props.background_image) url.searchParams.set("bg-image", `file:///${props.background_image.value}`);
 
             if (props.flex) url.searchParams.set("flex", props.flex.value ? "on" : "off");
+            if (props.time_format) url.searchParams.set("time_format", props.time_format.value ? "24" : "12");
 
             if (props.fps) url.searchParams.set("fps", parsePositiveInteger(props.fps.value));
             if (props.speed) url.searchParams.set("speed", parsePositiveInteger(props.speed.value));

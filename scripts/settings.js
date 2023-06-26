@@ -109,6 +109,8 @@ export class Settings {
     TARGET_FPS;
     ANIMATION_SPEED_DEG;
 
+    TIME_FORMAT;
+
     DIGIT_HEIGHT;
     DIGIT_WIDTH;
     TOP_OFFSET;
@@ -127,6 +129,8 @@ export class Settings {
         this.params = Object.fromEntries(urlSearchParams.entries());
 
         this.TARGET_FPS = ~~this.params["fps"] || 60;
+
+        this.TIME_FORMAT = ~~this.params["time_format"] === 12 ? 12 : 24;
 
         const speedValue = Number.parseFloat(this.params["speed"]);
         this.ANIMATION_SPEED_DEG = (speedValue > 0 && Number.isFinite(speedValue) ? speedValue : 60) / this.TARGET_FPS;
