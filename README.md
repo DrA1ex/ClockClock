@@ -45,12 +45,15 @@
 
 ## Settings
 - **theme** – theme configuration (one of above)
+- **time_format** - time format 12/24 (default: 24)
 - **clock_size** – diameter of a clock circe in px (default: _36_)
 - **clock_margin** – margin beetween each clock in px (default: _8_)
 - **clock_hour** – height of a hour arrow in px (default: <_clock_size_ - 2>)
 - **clock_minute** – height of a minute arrow in px (default: <_clock_size_>)
 - **clock_width** – width of arrows in px (default: _theme specific_)
 - **bg** – special backgroud mode. Supported values: oled, [other...](assets/bg/) (default: _none_)
+- **bg-color** - custom background color (any valid css color, e.g. #aaffbb), **required bg=color**
+- **bg-image** - custom background image (any valid url, e.g. http://example.com/image.jpg), **required bg=image**
 - **mode** – special display mode. Supported values: fullscreen (default: _none_)
 - **speed** - animation speed in degrees/second (default: _60_)
 - **fps** - animation frequency in renders/second (default: _60_)
