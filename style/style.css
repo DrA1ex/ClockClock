@@ -72,49 +72,49 @@ body {
 /* BACKGROUNDS */
 
 .switzerland-bg .container {
-    background: url(../bg/switzerland.jpg) no-repeat !important;
+    background: url(../assets/bg/switzerland.jpg) no-repeat !important;
     background-size: cover !important;
     background-position: center !important
 }
 
 .new_zeland-bg .container {
-    background: url(../bg/new_zeland.jpg) no-repeat !important;
+    background: url(../assets/bg/new_zeland.jpg) no-repeat !important;
     background-size: cover !important;
     background-position: center !important
 }
 
 .nasa_earth-bg .container {
-    background: url(../bg/nasa_earth.jpg) no-repeat !important;
+    background: url(../assets/bg/nasa_earth.jpg) no-repeat !important;
     background-size: cover !important;
     background-position: center !important
 }
 
 .nasa_nebula-bg .container {
-    background: url(../bg/nasa_nebula.jpg) no-repeat !important;
+    background: url(../assets/bg/nasa_nebula.jpg) no-repeat !important;
     background-size: cover !important;
     background-position: center !important
 }
 
 .nasa_tunnel-bg .container {
-    background: url(../bg/nasa_tunnel.jpg) no-repeat !important;
+    background: url(../assets/bg/nasa_tunnel.jpg) no-repeat !important;
     background-size: cover !important;
     background-position: center !important
 }
 
 .windows_blue-bg .container {
-    background: url(../bg/windows_blue.jpg) no-repeat !important;
+    background: url(../assets/bg/windows_blue.jpg) no-repeat !important;
     background-size: cover !important;
     background-position: center !important
 }
 
 .windows_green-bg .container {
-    background: url(../bg/windows_green.jpg) no-repeat !important;
+    background: url(../assets/bg/windows_green.jpg) no-repeat !important;
     background-size: cover !important;
     background-position: center !important
 }
 
 .windows_light-bg .container {
-    background: url(../bg/windows_light.jpg) no-repeat !important;
+    background: url(../assets/bg/windows_light.jpg) no-repeat !important;
     background-size: cover !important;
     background-position: center !important;
 }

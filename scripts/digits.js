@@ -125,7 +125,3 @@ export class Glyphs {
         }
     }
 }
-
-
-
-
