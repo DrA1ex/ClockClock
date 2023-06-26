@@ -1,5 +1,6 @@
 import {Settings} from "./scripts/settings.js";
 import {ClockDrawer} from "./scripts/clock.js";
+import * as WallpaperEngine from "./scripts/wallpaper_engine.js";
 
 const parent = document.getElementById("parent");
 const proto = document.getElementById("proto");
@@ -12,6 +13,10 @@ const BACKGROUNDS = ["oled", "nasa_earth", "nasa_nebula", "nasa_tunnel", "new_ze
     "windows_blue", "windows_green", "windows_light"];
 
 window.global = clockDrawer;
+
+if (WallpaperEngine.IS_WALLPAPER_ENGINE) {
+    WallpaperEngine.registerHandlers(settings);
+}
 
 if (settings.THEME.key) {
     settings.addClass(document.body, `${settings.THEME.key}-theme`);

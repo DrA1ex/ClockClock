@@ -134,8 +134,8 @@ export class Settings {
         this.DIGIT_HEIGHT = Glyphs.Digits[0].length;
         this.DIGIT_WIDTH = Glyphs.Digits[0][0].length;
 
-        this.TOP_OFFSET = ~~this.params["top"] || 1;
-        this.LEFT_OFFSET = ~~this.params["left"] || 1;
+        this.TOP_OFFSET = ~~(this.params["top"] ?? 1);
+        this.LEFT_OFFSET = ~~(this.params["left"] ?? 1);
 
         this.ROWS = this.TOP_OFFSET * 2 + this.DIGIT_HEIGHT;
         this.COLS = this.LEFT_OFFSET * 2 + this.DIGIT_WIDTH * 4 + 2;
