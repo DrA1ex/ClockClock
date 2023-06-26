@@ -10,7 +10,7 @@ const settings = new Settings();
 const clockDrawer = new ClockDrawer(parent, proto, canvas, settings);
 
 const BACKGROUNDS = ["oled", "nasa_earth", "nasa_nebula", "nasa_tunnel", "new_zeland", "switzerland",
-    "windows_blue", "windows_green", "windows_light"];
+    "windows_blue", "windows_green", "windows_light", "color", "image"];
 
 window.global = clockDrawer;
 
@@ -40,6 +40,14 @@ if (settings.params["mode"] === "fullscreen") {
 let flexEnabled = true;
 if (settings.params["flex"] === "off") {
     flexEnabled = false;
+}
+
+if (settings.params["bg-color"]) {
+    document.body.style.setProperty("--bg-color", settings.params["bg-color"]);
+}
+
+if (settings.params["bg-image"]) {
+    document.body.style.setProperty("--bg-image", `url(${settings.params["bg-image"]})`);
 }
 
 setTimeout(clock, 100);

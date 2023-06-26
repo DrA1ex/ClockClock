@@ -118,3 +118,11 @@ body {
     background-size: cover !important;
     background-position: center !important;
 }
+
+.color-bg .container {
+    background: var(--bg-color) !important;
+}
+
+.image-bg .container {
+    background: var(--bg-image) !important;
+}
