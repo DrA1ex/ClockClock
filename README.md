@@ -43,6 +43,37 @@
 
 #### Demo: [link](https://dra1ex.github.io/ClockClock/?theme=glass&bg=windows_light&clock_size=50&clock_margin=10&clock_width=5&clock_hour=18&clock_minute=22&fps=100)
 
+## Desktop background
+
+To install ClockClock as your wallpaper on Windows, you can use Wallpaper Engine. Follow these steps:
+
+1. Download and install Wallpaper Engine from the [Steam store](https://store.steampowered.com/app/431960/Wallpaper_Engine/).
+2. Once installed, open Wallpaper Engine and navigate to the Workshop tab.
+3. Search for "ClockClock" or go directly to the [ClockClock page](https://steamcommunity.com/sharedfiles/filedetails/?id=2806476496).
+4. Subscribe to the ClockClock wallpaper and wait for it to download.
+5. Once the download is complete, the ClockClock wallpaper will be available in your Wallpaper Engine library.
+6. Select the ClockClock wallpaper from your library and choose "Apply" to set it as your background.
+
+For MacOS users, you can use a tool called Plash to set ClockClock as your wallpaper. Here's how:
+
+1. Start by installing Plash. You can find the installation instructions on its GitHub page: [Plash](https://github.com/sindresorhus/Plash).
+2. Launch Plash and access the menu by clicking on the toolbar icon.
+3. In the menu, select "Add Website" to add ClockClock as your wallpaper. You can choose any theme you like. To find different themes, refer to the [Themes](#Themes) section for links.
+4. That's it! Your wallpaper will now display ClockClock. If you wish, you can customize certain parameters. For example, you can reduce the frames per second (FPS) to minimize resource usage. Refer to the [Settings](#Settings) section for more details.
+
+Additionally, you can further customize the appearance of ClockClock using CSS code. For instance, if you want to center the clock with your Dock panel by moving clock higher on the screen:
+
+1. Click Plash icon and go to the "Edit" menu.
+2. In the "Edit" dialog, paste the following CSS code:
+
+```css
+.clock-panel {
+    margin-bottom: 80px !important;
+}
+```
+
+By applying this code, the clock will be moved upward by 80 pixels.
+
 ## Settings
 - **theme** – theme configuration (one of above)
 - **time_format** - time format 12/24 (default: 24)
@@ -59,4 +90,4 @@
 - **fps** - animation frequency in renders/second (default: _60_)
 - **flex** - flex mode (idle animation). Supported values: on, off (default: _on_)
 
-**Example**: [link](https://dra1ex.github.io/ClockClock?theme=dark-gold&clock_size=64&clock_margin=24&clock_hour=24&clock_minute=48&bg=oled&mode=fullscreen)
+**Example**: [link](https://dra1ex.github.io/ClockClock/?theme=dark-gold&clock_size=64&clock_margin=24&clock_hour=12&clock_minute=24&bg=oled&mode=fullscreen)
