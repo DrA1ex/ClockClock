@@ -90,4 +90,4 @@ By applying this code, the clock will be moved upward by 80 pixels.
 - **fps** - animation frequency in renders/second (default: _60_)
 - **flex** - flex mode (idle animation). Supported values: on, off (default: _on_)
 
-**Example**: [link](https://dra1ex.github.io/ClockClock/?theme=dark-gold&clock_size=64&clock_margin=24&clock_hour=12&clock_minute=24&bg=oled&mode=fullscreen)
+**Example**: [link](https://dra1ex.github.io/ClockClock/?theme=dark-gold&clock_size=64&clock_margin=24&clock_hour=12&clock_minute=24&mode=fullscreen&bg=color&bg-color=%237b6345)
